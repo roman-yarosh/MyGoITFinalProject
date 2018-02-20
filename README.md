@@ -7,7 +7,8 @@
 - [About](#about)
 - [Demo](#demo)
 - [Technical task](#technical-task)
-
+- [Development](#development)
+- [License](#license)
 
 ## About
 
@@ -46,6 +47,16 @@ Some text about us.
 По желанию, разрешается реализовать клиентскую часть приложения - front end с использованием любой frontend технологии.
 
 На выполнение проекта - 3 недели!
+
+## Development
+
+* Database creation:
+1. Open your console.
+2. Run script:
+ ```bash
+ mysql -u userName -p databaseName < path/to/GoITFinalProject/src/main/resources/initDatabase.sql
+```
+3. Enter your mysql password.
 
 ## License
 

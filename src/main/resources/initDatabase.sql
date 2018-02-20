@@ -74,7 +74,7 @@ CREATE TABLE reports (
   path VARCHAR(255),
   data BLOB
 )
-  ENGINE = FILES;
+  ENGINE = InnoDB;
 
 -- Table: status_employees
 -- table for mapping statuses and employees.
