@@ -208,7 +208,7 @@ CREATE TABLE `goit_final_project`.`employee_role` (
 -- table for mapping employee and department.
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goit_final_project`.`employee_department`;
-CREATE TABLE `goit_final_project`.`employee_roles` (
+CREATE TABLE `goit_final_project`.`employee_department` (
   `EMPLOYEE_ID`   INT(10) UNSIGNED NOT NULL,
   `DEPARTMENT_ID` INT(10) UNSIGNED NOT NULL,
 
