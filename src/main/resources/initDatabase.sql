@@ -236,3 +236,17 @@ CREATE TABLE `goit_final_project`.`employee_position` (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+
+-- -----------------------------------------------------
+-- Table: employee_salary_from_month
+-- table for employee salary from one month
+-- -----------------------------------------------------
+CREATE TABLE `goit_final_project`.`employee_salary_from_month` (
+  `EMPLOYEE_ID` INT(10) UNSIGNED NOT NULL,
+  `SALARY_DATE` DATE             NOT NULL,
+  `SALARY_SUM`  DECIMAL          NOT NULL,
+
+  FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `goit_final_project`.`employees` (`EMPLOYEE_ID`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
