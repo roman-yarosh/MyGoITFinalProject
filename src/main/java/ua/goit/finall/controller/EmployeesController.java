@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class EmployeesController {
-    @RequestMapping("/")
+//    @RequestMapping("/")
     public String home() {
         return "index";
     }
