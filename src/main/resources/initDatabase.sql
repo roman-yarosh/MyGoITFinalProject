@@ -121,21 +121,6 @@ CREATE TABLE statuses (
   DEFAULT CHARSET = utf8;
 
 -- -----------------------------------------------------
--- Table: reports
--- stores information about report files.
--- -----------------------------------------------------
-DROP TABLE IF EXISTS reports;
-CREATE TABLE reports (
-  REPORT_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  PATH      VARCHAR(255),
-  DATA      BLOB,
-
-  PRIMARY KEY (REPORT_ID) USING BTREE
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
--- -----------------------------------------------------
 -- Table: employee_status
 -- table for mapping employee and status.
 -- -----------------------------------------------------
@@ -167,21 +152,6 @@ CREATE TABLE employee_events (
   FOREIGN KEY (EVENT_ID) REFERENCES events (EVENT_ID),
 
   UNIQUE (EVENT_ID, EMPLOYEE_ID)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
--- -----------------------------------------------------
--- Table: employee_reports
--- table for mapping employee and reports.
--- -----------------------------------------------------
-DROP TABLE IF EXISTS employee_reports;
-CREATE TABLE employee_reports (
-  EMPLOYEE_ID INT(10) UNSIGNED NOT NULL,
-  REPORT_ID   INT(10) UNSIGNED NOT NULL,
-
-  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID),
-  FOREIGN KEY (REPORT_ID) REFERENCES reports (REPORT_ID)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
