@@ -1,44 +1,44 @@
 -- -----------------------------------------------------
 -- Drop database if exist
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `goit_final_project`;
+DROP SCHEMA IF EXISTS goit_final_project;
 
 -- -----------------------------------------------------
 -- Create database if not exists: goit_final_project;
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `goit_final_project`
+CREATE SCHEMA IF NOT EXISTS goit_final_project
   CHARACTER SET utf8
   COLLATE utf8_general_ci;
 
 -- -----------------------------------------------------
 -- Use database: goit_final_project
 -- -----------------------------------------------------
-USE `goit_final_project`;
+USE goit_final_project;
 
 -- -----------------------------------------------------
 -- Table: employees
 -- stores information about employees.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`employees`;
-CREATE TABLE `goit_final_project`.`employees` (
-  `EMPLOYEE_ID`     INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `LOGIN`           VARCHAR(20)      NOT NULL,
-  `PASSWORD`        VARCHAR(20)      NOT NULL,
-  `NAME`            VARCHAR(20)      NOT NULL,
-  `SURNAME`         VARCHAR(20)      NOT NULL,
-  `MIDDLE_NAME`     VARCHAR(20),
-  `EMAIL`           VARCHAR(50)      NOT NULL,
-  `SALLARY_RATE`    DECIMAL          NOT NULL,
-  `ROLE_ID`         INT              NOT NULL,
-  `POSITION_ID`     INT              NOT NULL,
-  `DEPARTMENT_ID`   INT              NOT NULL,
-  `EVENT_ID`        INT,
-  `STATUS_ID`       INT,
-  `REGISTERED_DATE` DATETIME         NOT NULL,
+DROP TABLE IF EXISTS employees;
+CREATE TABLE employees (
+  EMPLOYEE_ID     INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  LOGIN           VARCHAR(20)      NOT NULL,
+  PASSWORD        VARCHAR(20)      NOT NULL,
+  NAME            VARCHAR(20)      NOT NULL,
+  SURNAME         VARCHAR(20)      NOT NULL,
+  MIDDLE_NAME     VARCHAR(20),
+  EMAIL           VARCHAR(50)      NOT NULL,
+  SALLARY_RATE    DECIMAL          NOT NULL,
+  ROLE_ID         INT              NOT NULL,
+  POSITION_ID     INT              NOT NULL,
+  DEPARTMENT_ID   INT              NOT NULL,
+  EVENT_ID        INT,
+  STATUS_ID       INT,
+  REGISTERED_DATE DATETIME         NOT NULL,
 
-  PRIMARY KEY (`EMPLOYEE_ID`) USING BTREE,
-  UNIQUE KEY `UNI_LOGIN` (`LOGIN`),
-  UNIQUE KEY `UNI_EMAIL` (`EMAIL`)
+  PRIMARY KEY (EMPLOYEE_ID) USING BTREE,
+  UNIQUE KEY UNI_LOGIN (LOGIN),
+  UNIQUE KEY UNI_EMAIL (EMAIL)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -47,13 +47,13 @@ CREATE TABLE `goit_final_project`.`employees` (
 -- Table: roles
 -- stores information about user roles.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`roles`;
-CREATE TABLE `goit_final_project`.`roles` (
-  `ROLE_ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `NAME`    VARCHAR(255)     NOT NULL,
+DROP TABLE IF EXISTS roles;
+CREATE TABLE roles (
+  ROLE_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  NAME    VARCHAR(255)     NOT NULL,
 
-  PRIMARY KEY (`ROLE_ID`) USING BTREE,
-  UNIQUE KEY `UNI_NAME` (`NAME`)
+  PRIMARY KEY (ROLE_ID) USING BTREE,
+  UNIQUE KEY UNI_NAME (NAME)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -62,13 +62,13 @@ CREATE TABLE `goit_final_project`.`roles` (
 -- Table: departments
 -- stores information about departments.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`departments`;
-CREATE TABLE `goit_final_project`.`departments` (
-  `DEPARTMENT_ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `NAME`          VARCHAR(128)     NOT NULL,
+DROP TABLE IF EXISTS departments;
+CREATE TABLE departments (
+  DEPARTMENT_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  NAME          VARCHAR(128)     NOT NULL,
 
-  PRIMARY KEY (`DEPARTMENT_ID`) USING BTREE,
-  UNIQUE KEY `UNI_NAME` (`NAME`)
+  PRIMARY KEY (DEPARTMENT_ID) USING BTREE,
+  UNIQUE KEY UNI_NAME (NAME)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -77,13 +77,13 @@ CREATE TABLE `goit_final_project`.`departments` (
 -- Table: positions
 -- stores information about positions.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`positions`;
-CREATE TABLE `goit_final_project`.`positions` (
-  `POSITION_ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `NAME`        VARCHAR(128) NOT NULL,
+DROP TABLE IF EXISTS positions;
+CREATE TABLE positions (
+  POSITION_ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  NAME        VARCHAR(128) NOT NULL,
 
-  PRIMARY KEY (`POSITION_ID`) USING BTREE,
-  UNIQUE KEY `UNI_NAME` (`NAME`)
+  PRIMARY KEY (POSITION_ID) USING BTREE,
+  UNIQUE KEY UNI_NAME (NAME)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -92,16 +92,16 @@ CREATE TABLE `goit_final_project`.`positions` (
 -- Table: events
 -- stores information about events.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`events`;
-CREATE TABLE `goit_final_project`.`events` (
-  `EVENT_ID`            INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `NAME`                VARCHAR(128)     NOT NULL,
-  `TYPE`                VARCHAR(128)     NOT NULL,
-  `START_DATETIME`      DATETIME         NOT NULL,
-  `END_DATETIME`        DATETIME         NOT NULL,
-  `CREATED_EMPLOYEE_ID` INT              NOT NULL,
+DROP TABLE IF EXISTS events;
+CREATE TABLE events (
+  EVENT_ID            INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  NAME                VARCHAR(128)     NOT NULL,
+  TYPE                VARCHAR(128)     NOT NULL,
+  START_DATETIME      DATETIME         NOT NULL,
+  END_DATETIME        DATETIME         NOT NULL,
+  CREATED_EMPLOYEE_ID INT              NOT NULL,
 
-  PRIMARY KEY (`EVENT_ID`) USING BTREE
+  PRIMARY KEY (EVENT_ID) USING BTREE
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -110,12 +110,12 @@ CREATE TABLE `goit_final_project`.`events` (
 -- Table: statuses
 -- stores information about statuses.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`statuses`;
-CREATE TABLE `goit_final_project`.`statuses` (
-  `STATUS_ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `NAME`      VARCHAR(10)      NOT NULL,
+DROP TABLE IF EXISTS statuses;
+CREATE TABLE statuses (
+  STATUS_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  NAME      VARCHAR(10)      NOT NULL,
 
-  PRIMARY KEY (`STATUS_ID`) USING BTREE
+  PRIMARY KEY (STATUS_ID) USING BTREE
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -124,13 +124,13 @@ CREATE TABLE `goit_final_project`.`statuses` (
 -- Table: reports
 -- stores information about report files.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`reports`;
-CREATE TABLE `goit_final_project`.`reports` (
-  `REPORT_ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `PATH`      VARCHAR(255),
-  `DATA`      BLOB,
+DROP TABLE IF EXISTS reports;
+CREATE TABLE reports (
+  REPORT_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  PATH      VARCHAR(255),
+  DATA      BLOB,
 
-  PRIMARY KEY (`REPORT_ID`) USING BTREE
+  PRIMARY KEY (REPORT_ID) USING BTREE
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -139,17 +139,17 @@ CREATE TABLE `goit_final_project`.`reports` (
 -- Table: employee_status
 -- table for mapping employee and status.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`employee_status`;
-CREATE TABLE `goit_final_project`.`employee_status` (
-  `EMPLOYEE_ID`    INT(10) UNSIGNED NOT NULL,
-  `STATUS_ID`      INT(10) UNSIGNED NOT NULL,
-  `START_DATETIME` DATETIME         NOT NULL,
-  `END_DATETIME`   DATETIME         NOT NULL,
+DROP TABLE IF EXISTS employee_status;
+CREATE TABLE employee_status (
+  EMPLOYEE_ID    INT(10) UNSIGNED NOT NULL,
+  STATUS_ID      INT(10) UNSIGNED NOT NULL,
+  START_DATETIME DATETIME         NOT NULL,
+  END_DATETIME   DATETIME         NOT NULL,
 
-  FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `goit_final_project`.`employees` (`EMPLOYEE_ID`),
-  FOREIGN KEY (`STATUS_ID`) REFERENCES `goit_final_project`.`statuses` (`STATUS_ID`),
+  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID),
+  FOREIGN KEY (STATUS_ID) REFERENCES statuses (STATUS_ID),
 
-  UNIQUE (`STATUS_ID`, `EMPLOYEE_ID`)
+  UNIQUE (STATUS_ID, EMPLOYEE_ID)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -158,15 +158,15 @@ CREATE TABLE `goit_final_project`.`employee_status` (
 -- Table: employee_events
 -- table for mapping employee and events.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`employee_events`;
-CREATE TABLE `goit_final_project`.`employee_events` (
-  `EMPLOYEE_ID` INT(10) UNSIGNED NOT NULL,
-  `EVENT_ID`    INT(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS employee_events;
+CREATE TABLE employee_events (
+  EMPLOYEE_ID INT(10) UNSIGNED NOT NULL,
+  EVENT_ID    INT(10) UNSIGNED NOT NULL,
 
-  FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `goit_final_project`.`employees` (`EMPLOYEE_ID`),
-  FOREIGN KEY (`EVENT_ID`) REFERENCES `goit_final_project`.`events` (`EVENT_ID`),
+  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID),
+  FOREIGN KEY (EVENT_ID) REFERENCES events (EVENT_ID),
 
-  UNIQUE (`EVENT_ID`, `EMPLOYEE_ID`)
+  UNIQUE (EVENT_ID, EMPLOYEE_ID)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -175,13 +175,13 @@ CREATE TABLE `goit_final_project`.`employee_events` (
 -- Table: employee_reports
 -- table for mapping employee and reports.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`employee_reports`;
-CREATE TABLE `goit_final_project`.`employee_reports` (
-  `EMPLOYEE_ID` INT(10) UNSIGNED NOT NULL,
-  `REPORT_ID`   INT(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS employee_reports;
+CREATE TABLE employee_reports (
+  EMPLOYEE_ID INT(10) UNSIGNED NOT NULL,
+  REPORT_ID   INT(10) UNSIGNED NOT NULL,
 
-  FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `goit_final_project`.`employees` (`EMPLOYEE_ID`),
-  FOREIGN KEY (`REPORT_ID`) REFERENCES `goit_final_project`.`reports` (`REPORT_ID`)
+  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID),
+  FOREIGN KEY (REPORT_ID) REFERENCES reports (REPORT_ID)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -190,15 +190,15 @@ CREATE TABLE `goit_final_project`.`employee_reports` (
 -- Table: employee_roles
 -- table for mapping employee and role.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`employee_role`;
-CREATE TABLE `goit_final_project`.`employee_role` (
-  `EMPLOYEE_ID` INT(10) UNSIGNED NOT NULL,
-  `ROLE_ID`     INT(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS employee_role;
+CREATE TABLE employee_role (
+  EMPLOYEE_ID INT(10) UNSIGNED NOT NULL,
+  ROLE_ID     INT(10) UNSIGNED NOT NULL,
 
-  FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `goit_final_project`.`employees` (`EMPLOYEE_ID`),
-  FOREIGN KEY (`ROLE_ID`) REFERENCES `goit_final_project`.`roles` (`ROLE_ID`),
+  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID),
+  FOREIGN KEY (ROLE_ID) REFERENCES roles (ROLE_ID),
 
-  UNIQUE (`EMPLOYEE_ID`, `ROLE_ID`)
+  UNIQUE (EMPLOYEE_ID, ROLE_ID)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -207,15 +207,15 @@ CREATE TABLE `goit_final_project`.`employee_role` (
 -- Table: employee_departments
 -- table for mapping employee and department.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`employee_department`;
-CREATE TABLE `goit_final_project`.`employee_department` (
-  `EMPLOYEE_ID`   INT(10) UNSIGNED NOT NULL,
-  `DEPARTMENT_ID` INT(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS employee_department;
+CREATE TABLE employee_department (
+  EMPLOYEE_ID   INT(10) UNSIGNED NOT NULL,
+  DEPARTMENT_ID INT(10) UNSIGNED NOT NULL,
 
-  FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `goit_final_project`.`employees` (`EMPLOYEE_ID`),
-  FOREIGN KEY (`DEPARTMENT_ID`) REFERENCES `goit_final_project`.`departments` (`DEPARTMENT_ID`),
+  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID),
+  FOREIGN KEY (DEPARTMENT_ID) REFERENCES departments (DEPARTMENT_ID),
 
-  UNIQUE (`EMPLOYEE_ID`, `DEPARTMENT_ID`)
+  UNIQUE (EMPLOYEE_ID, DEPARTMENT_ID)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -224,15 +224,15 @@ CREATE TABLE `goit_final_project`.`employee_department` (
 -- Table: employee_departments
 -- table for mapping employee and position.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `goit_final_project`.`employee_position`;
-CREATE TABLE `goit_final_project`.`employee_position` (
-  `EMPLOYEE_ID` INT(10) UNSIGNED NOT NULL,
-  `POSITION_ID` INT(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS employee_position;
+CREATE TABLE employee_position (
+  EMPLOYEE_ID INT(10) UNSIGNED NOT NULL,
+  POSITION_ID INT(10) UNSIGNED NOT NULL,
 
-  FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `goit_final_project`.`employees` (`EMPLOYEE_ID`),
-  FOREIGN KEY (`POSITION_ID`) REFERENCES `goit_final_project`.`positions` (`POSITION_ID`),
+  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID),
+  FOREIGN KEY (POSITION_ID) REFERENCES positions (POSITION_ID),
 
-  UNIQUE (`EMPLOYEE_ID`, `POSITION_ID`)
+  UNIQUE (EMPLOYEE_ID, POSITION_ID)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -241,12 +241,12 @@ CREATE TABLE `goit_final_project`.`employee_position` (
 -- Table: employee_salary_from_month
 -- table for employee salary from one month
 -- -----------------------------------------------------
-CREATE TABLE `goit_final_project`.`employee_salary_from_month` (
-  `EMPLOYEE_ID` INT(10) UNSIGNED NOT NULL,
-  `SALARY_DATE` DATE             NOT NULL,
-  `SALARY_SUM`  DECIMAL          NOT NULL,
+CREATE TABLE employee_salary_from_month (
+  EMPLOYEE_ID INT(10) UNSIGNED NOT NULL,
+  SALARY_DATE DATE             NOT NULL,
+  SALARY_SUM  DECIMAL          NOT NULL,
 
-  FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `goit_final_project`.`employees` (`EMPLOYEE_ID`)
+  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
