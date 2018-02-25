@@ -1,0 +1,1 @@
+INSERT INTO employees (employee_id, login, name, surname, password, email, SALLARY_RATE, ROLE_ID, POSITION_ID, DEPARTMENT_ID, REGISTERED_DATE) VALUES (1, '1', '1', '1', '1', 'e', 5, 1, 1, 1, 0)

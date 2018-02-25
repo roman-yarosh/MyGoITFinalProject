@@ -1,12 +1,37 @@
 package ua.goit.finall.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ua.goit.finall.model.Employee;
+import ua.goit.finall.service.EmployeeService;
+
+import java.util.Map;
 
 @Controller
 public class EmployeesController {
-//    @RequestMapping("/")
-    public String home() {
-        return "index";
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @RequestMapping("/employeeInfo")
+    public String employeeInfo(Map<String, Object> model) {
+        String userName = getLoggedinUserName();
+        Employee employee = employeeService.findEmployeeByName(userName);
+        model.put("emp", employee);
+        return "employeeInfo";
+    }
+
+    private String getLoggedinUserName() {
+        Object principal = SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        }
+
+        return principal.toString();
     }
 }
