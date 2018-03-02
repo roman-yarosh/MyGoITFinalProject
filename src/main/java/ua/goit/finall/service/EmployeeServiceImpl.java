@@ -18,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findEmployeeByName(String name) {
+    public List<Employee> findEmployeeByName(String name) {
         return employeeRepository.findEmployeeByName(name);
     }
 }

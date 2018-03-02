@@ -16,6 +16,12 @@ public class WelcomeController {
 		model.put("name", getLoggedinUserName());
 		return "index";
 	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Map<String, Object> model) {
+		model.put("name", getLoggedinUserName());
+		return "index";
+	}
 	private String getLoggedinUserName() {
 		Object principal = SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
