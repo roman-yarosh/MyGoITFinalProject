@@ -23,9 +23,10 @@ public class EmployeesController {
     @RequestMapping("/employeeInfo")
     public String employeeInfo(Map<String, Object> model) {
         String userName = getLoggedinUserName();
-        List<Employee> employee = employeeService.findEmployeeByName(userName);
+        Employee employee = employeeService.findEmployeeByName(userName);
         model.put("emp", employee);
         logger.info("Empn - " + userName);
+        logger.info("Event - " + employee.getEvent());
 
         return "employeeInfo";
     }

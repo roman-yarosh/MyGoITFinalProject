@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface EmployeeService {
     Iterable<Employee> getAll();
-    List<Employee> findEmployeeByName(String name);
+    Employee findEmployeeByName(String name);
 }

@@ -5,13 +5,13 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "employees")
+@Table
 public class Employee extends BaseEntity {
 
     private String name;
@@ -28,6 +28,6 @@ public class Employee extends BaseEntity {
     private Salary salary;
 
     //@Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime registred;
+    private Date registred;
     private String email;
 }
