@@ -1,12 +1,10 @@
 package ua.goit.finall.model;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "status")
 public class Status extends BaseEntity{
     private String type;
     @OneToOne

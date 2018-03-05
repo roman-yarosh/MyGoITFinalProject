@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "employee")
 public class Employee extends BaseEntity {
 
     private String name;
