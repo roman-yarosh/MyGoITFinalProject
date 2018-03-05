@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ua.goit.finall.model.Employee;
 import ua.goit.finall.service.EmployeeService;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
