@@ -13,4 +13,36 @@ public class Salary extends BaseEntity {
     private Integer month;
     private Integer year;
     private BigDecimal salarySum;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Integer getMonth() {
+        return month;
+    }
+
+    public void setMonth(Integer month) {
+        this.month = month;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public BigDecimal getSalarySum() {
+        return salarySum;
+    }
+
+    public void setSalarySum(BigDecimal salarySum) {
+        this.salarySum = salarySum;
+    }
 }

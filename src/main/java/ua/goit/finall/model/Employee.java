@@ -1,10 +1,8 @@
 package ua.goit.finall.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "employee")
@@ -16,8 +14,8 @@ public class Employee extends BaseEntity {
     private Department department;
     @ManyToOne
     private Position position;
-    @OneToOne
-    private Event event;
+    @OneToMany(mappedBy = "employee")
+    private List<Event> events;
     @OneToOne
     private Status status;
     @OneToOne
@@ -34,7 +32,7 @@ public class Employee extends BaseEntity {
         sb.append(", surname='").append(surname).append('\'');
         sb.append(", department=").append(department);
         sb.append(", position=").append(position);
-        sb.append(", event=").append(event);
+        sb.append(", event=").append(events);
         sb.append(", status=").append(status);
         sb.append(", salary=").append(salary);
         sb.append(", registred=").append(registred);
@@ -75,12 +73,12 @@ public class Employee extends BaseEntity {
         this.position = position;
     }
 
-    public Event getEvent() {
-        return event;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 
     public Status getStatus() {
