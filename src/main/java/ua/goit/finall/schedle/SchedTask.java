@@ -30,7 +30,9 @@ public class SchedTask {
         count++;
         System.out.println("Count" + count);
 
-        employeeService.calculateSalary();
+        //Настя нужно передать месяц и год в расчет зарплаты и подправить алгоритм рассчета
+
+        //!!!!!!employeeService.calculateSalary(1, 1);
         //sendMessageWithAttachment();
 
     }

@@ -17,18 +17,27 @@ public class Employee extends BaseEntity {
     @ManyToOne
     private Position position;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Event> events;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "STATUS_ID")
     private Status status;
 
-    @OneToOne
-    private Salary salary;
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Salary> salary;
 
-    //@Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date registred;
+
     private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+    public Employee() {
+    }
 
     @Override
     public String toString() {
@@ -37,7 +46,7 @@ public class Employee extends BaseEntity {
         sb.append(", surname='").append(surname).append('\'');
         sb.append(", department=").append(department);
         sb.append(", position=").append(position);
-        sb.append(", event=").append(events);
+        sb.append(", events=").append(events);
         sb.append(", status=").append(status);
         sb.append(", salary=").append(salary);
         sb.append(", registred=").append(registred);
@@ -94,11 +103,11 @@ public class Employee extends BaseEntity {
         this.status = status;
     }
 
-    public Salary getSalary() {
+    public List<Salary> getSalary() {
         return salary;
     }
 
-    public void setSalary(Salary salary) {
+    public void setSalary(List<Salary> salary) {
         this.salary = salary;
     }
 

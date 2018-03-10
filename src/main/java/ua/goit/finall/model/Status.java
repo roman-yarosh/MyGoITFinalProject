@@ -1,18 +1,29 @@
 package ua.goit.finall.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "status")
 public class Status extends BaseEntity{
 
+    @Column(name = "TYPE")
     private String type;
 
-    @OneToOne
-    private Employee employee;
+    @OneToMany(mappedBy = "status", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Employee> employee;
 
     public Status() {
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Status{");
+        sb.append("id='").append(super.getId()).append('\'');
+        sb.append("type='").append(type).append('\'');
+        sb.append(", employee=").append(employee);
+        sb.append('}');
+        return sb.toString();
     }
 
     public String getType() {
@@ -23,11 +34,11 @@ public class Status extends BaseEntity{
         this.type = type;
     }
 
-    public Employee getEmployee() {
+    public List<Employee> getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(List<Employee> employee) {
         this.employee = employee;
     }
 }

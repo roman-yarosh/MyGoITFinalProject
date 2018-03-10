@@ -1,18 +1,39 @@
 package ua.goit.finall.model;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "salary")
 public class Salary extends BaseEntity {
-    @OneToOne
+
+    @ManyToOne
+    @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
+
+    @Column(name = "MONTH")
     private Integer month;
+
+    @Column(name = "YAER")
     private Integer year;
+
+    @Column(name = "SALARY_SUM")
     private BigDecimal salarySum;
+
+    public Salary() {
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Salary{");
+        sb.append("id=").append(super.getId());
+        sb.append("employee=").append(employee);
+        sb.append(", month=").append(month);
+        sb.append(", year=").append(year);
+        sb.append(", salarySum=").append(salarySum);
+        sb.append('}');
+        return sb.toString();
+    }
 
     public Employee getEmployee() {
         return employee;

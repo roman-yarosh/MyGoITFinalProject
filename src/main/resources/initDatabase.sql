@@ -22,13 +22,13 @@ USE goit_final_project;
 DROP TABLE IF EXISTS employees;
 CREATE TABLE employees (
   EMPLOYEE_ID     INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  LOGIN           VARCHAR(20)      NOT NULL,
-  PASSWORD        VARCHAR(20)      NOT NULL,
+--  LOGIN           VARCHAR(20)      NOT NULL,
+--  PASSWORD        VARCHAR(20)      NOT NULL,
   NAME            VARCHAR(20)      NOT NULL,
   SURNAME         VARCHAR(20)      NOT NULL,
   MIDDLE_NAME     VARCHAR(20),
   EMAIL           VARCHAR(50)      NOT NULL,
-  SALLARY_RATE    DECIMAL          NOT NULL,
+--  SALLARY_RATE    DECIMAL          NOT NULL,
   ROLE_ID         INT              NOT NULL,
   POSITION_ID     INT              NOT NULL,
   DEPARTMENT_ID   INT              NOT NULL,
@@ -64,9 +64,11 @@ CREATE TABLE roles (
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-  USER_ID  INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  USER_ID  INT          NOT NULL AUTO_INCREMENT,
   USERNAME VARCHAR(255) NOT NULL,
   PASSWORD VARCHAR(255) NOT NULL,
+
+  PRIMARY KEY (USER_ID) USING BTREE,
   UNIQUE KEY UNI_USERNAME (USERNAME)
 )
   ENGINE = InnoDB
@@ -129,7 +131,8 @@ CREATE TABLE statuses (
   STATUS_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   TYPE      VARCHAR(10)      NOT NULL,
 
-  PRIMARY KEY (STATUS_ID) USING BTREE
+  PRIMARY KEY (STATUS_ID) USING BTREE,
+  UNIQUE KEY UNI_TYPE (TYPE)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -137,26 +140,28 @@ CREATE TABLE statuses (
 -- -----------------------------------------------------
 -- Table: employee_status
 -- table for mapping employee and status.
+-- !!! Statuses will be one to many not many to many, so this table is not need
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS employee_status;
-CREATE TABLE employee_status (
-  EMPLOYEE_ID    INT(10) UNSIGNED NOT NULL,
-  STATUS_ID      INT(10) UNSIGNED NOT NULL,
-  START_DATETIME DATETIME         NOT NULL,
-  END_DATETIME   DATETIME         NOT NULL,
+-- DROP TABLE IF EXISTS employee_status;
+-- CREATE TABLE employee_status (
+--  EMPLOYEE_ID    INT(10) UNSIGNED NOT NULL,
+--  STATUS_ID      INT(10) UNSIGNED NOT NULL,
+--  START_DATETIME DATETIME         NOT NULL,
+--  END_DATETIME   DATETIME         NOT NULL,
 
-  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID),
-  FOREIGN KEY (STATUS_ID) REFERENCES statuses (STATUS_ID),
+--  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID),
+--  FOREIGN KEY (STATUS_ID) REFERENCES statuses (STATUS_ID),
 
-  UNIQUE (STATUS_ID, EMPLOYEE_ID)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+--  UNIQUE (STATUS_ID, EMPLOYEE_ID)
+-- )
+--  ENGINE = InnoDB
+--  DEFAULT CHARSET = utf8;
 
 -- -----------------------------------------------------
 -- Table: employee_events
 -- table for mapping employee and events.
 -- -----------------------------------------------------
+
 DROP TABLE IF EXISTS employee_events;
 CREATE TABLE employee_events (
   EMPLOYEE_ID INT(10) UNSIGNED NOT NULL,
@@ -171,18 +176,18 @@ CREATE TABLE employee_events (
   DEFAULT CHARSET = utf8;
 
 -- -----------------------------------------------------
--- Table: employee_roles
--- table for mapping employee and role.
+-- Table: user_roles
+-- table for mapping user and role.
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS employee_role;
-CREATE TABLE employee_role (
-  EMPLOYEE_ID INT(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS user_roles;
+CREATE TABLE user_roles (
+  USER_ID     INT(10) UNSIGNED NOT NULL,
   ROLE_ID     INT(10) UNSIGNED NOT NULL,
 
-  FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID),
+  FOREIGN KEY (USER_ID) REFERENCES users (USER_ID),
   FOREIGN KEY (ROLE_ID) REFERENCES roles (ROLE_ID),
 
-  UNIQUE (EMPLOYEE_ID, ROLE_ID)
+  UNIQUE (USER_ID, ROLE_ID)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -227,7 +232,9 @@ CREATE TABLE employee_position (
 -- -----------------------------------------------------
 CREATE TABLE employee_salary_from_month (
   EMPLOYEE_ID INT(10) UNSIGNED NOT NULL,
-  SALARY_DATE DATE             NOT NULL,
+  MONTH       INT              NOT NULL,
+  YAER        INT              NOT NULL,
+--  SALARY_DATE DATE             NOT NULL,
   SALARY_SUM  DECIMAL          NOT NULL,
 
   FOREIGN KEY (EMPLOYEE_ID) REFERENCES employees (EMPLOYEE_ID)

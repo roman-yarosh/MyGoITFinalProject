@@ -5,7 +5,10 @@ import ua.goit.finall.model.Employee;
 import java.util.List;
 
 public interface EmployeeService {
+
     Iterable<Employee> getAll();
+
     Employee findEmployeeByName(String name);
-    void calculateSalary();
+
+    void calculateSalary(Integer month, Integer year);
 }

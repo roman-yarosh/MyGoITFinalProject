@@ -26,7 +26,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void calculateSalary() {
+    public void calculateSalary(Integer month, Integer year) {
+
+        //Настя надо подправить расчет, чтобы рассчитывалась зарплата только за дни месяца, ане всего рабочего периода
 
         for (Employee employee : employeeRepository.findAllWithDeps()) {
             double salarySum = 0;
@@ -34,7 +36,10 @@ public class EmployeeServiceImpl implements EmployeeService {
             for (Event event : employee.getEvents()) {
                 salarySum += event.getType().getRate() * hourSalary;
             }
-            employee.getSalary().setSalarySum(BigDecimal.valueOf(salarySum));
+
+           // Надо проверить нет ли в списке зарплаты за данный месяц и год, если есть, перезаписать сумму, если нет,
+            // то добавить в коллекцию новыую зарплату с месяцем и годом
+          //!!!!!!  employee.getSalary().setSalarySum(BigDecimal.valueOf(salarySum));
             System.out.println(salarySum);
         }
     }
