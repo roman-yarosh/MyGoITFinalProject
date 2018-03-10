@@ -59,6 +59,20 @@ CREATE TABLE roles (
   DEFAULT CHARSET = utf8;
 
 -- -----------------------------------------------------
+-- Table: users
+-- stores information about users.
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+  USER_ID  INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  USERNAME VARCHAR(255) NOT NULL,
+  PASSWORD VARCHAR(255) NOT NULL,
+  UNIQUE KEY UNI_USERNAME (USERNAME)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- -----------------------------------------------------
 -- Table: departments
 -- stores information about departments.
 -- -----------------------------------------------------
@@ -113,7 +127,7 @@ CREATE TABLE events (
 DROP TABLE IF EXISTS statuses;
 CREATE TABLE statuses (
   STATUS_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  NAME      VARCHAR(10)      NOT NULL,
+  TYPE      VARCHAR(10)      NOT NULL,
 
   PRIMARY KEY (STATUS_ID) USING BTREE
 )

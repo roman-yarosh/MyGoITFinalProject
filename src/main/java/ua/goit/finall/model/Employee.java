@@ -10,14 +10,19 @@ public class Employee extends BaseEntity {
 
     private String name;
     private String surname;
+
     @ManyToOne
     private Department department;
+
     @ManyToOne
     private Position position;
+
     @OneToMany(mappedBy = "employee")
     private List<Event> events;
+
     @OneToOne
     private Status status;
+
     @OneToOne
     private Salary salary;
 
