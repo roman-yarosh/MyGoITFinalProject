@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee extends BaseEntity {
 
     private String name;

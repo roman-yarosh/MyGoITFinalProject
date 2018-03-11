@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "status")
+@Table(name = "statuses")
 public class Status extends BaseEntity{
 
     @Column(name = "TYPE")

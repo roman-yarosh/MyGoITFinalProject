@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role extends BaseEntity{
 
     @Column(name = "NAME")

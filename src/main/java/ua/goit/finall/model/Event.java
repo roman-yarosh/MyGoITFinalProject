@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "event")
+@Table(name = "events")
 public class Event extends BaseEntity{
     @OneToOne
     private EventType type;

@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "department")
+@Table(name = "departments")
 public class Department extends BaseEntity{
     private String name;
     @OneToMany

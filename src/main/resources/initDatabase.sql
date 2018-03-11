@@ -227,10 +227,10 @@ CREATE TABLE employee_position (
   DEFAULT CHARSET = utf8;
 
 -- -----------------------------------------------------
--- Table: employee_salary_from_month
--- table for employee salary from one month
+-- Table: salaries
+-- table for employee salaries for each month
 -- -----------------------------------------------------
-CREATE TABLE employee_salary_from_month (
+CREATE TABLE salaries (
   EMPLOYEE_ID INT(10) UNSIGNED NOT NULL,
   MONTH       INT              NOT NULL,
   YAER        INT              NOT NULL,

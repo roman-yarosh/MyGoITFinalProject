@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "salary")
+@Table(name = "salaries")
 public class Salary extends BaseEntity {
 
     @ManyToOne
