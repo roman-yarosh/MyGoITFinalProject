@@ -1,5 +1,7 @@
 package ua.goit.finall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class Status extends BaseEntity{
     @Column(name = "TYPE")
     private String type;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "status", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Employee> employeeList;
 

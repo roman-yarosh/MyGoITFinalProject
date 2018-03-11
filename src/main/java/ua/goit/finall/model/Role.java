@@ -1,5 +1,7 @@
 package ua.goit.finall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -13,6 +15,7 @@ public class Role extends BaseEntity{
     @Column(name = "NAME")
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Set<User> userSet;
 

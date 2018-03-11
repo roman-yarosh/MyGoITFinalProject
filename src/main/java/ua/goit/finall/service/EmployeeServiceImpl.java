@@ -6,7 +6,6 @@ import ua.goit.finall.dao.EmployeeRepository;
 import ua.goit.finall.model.Employee;
 import ua.goit.finall.model.Event;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service

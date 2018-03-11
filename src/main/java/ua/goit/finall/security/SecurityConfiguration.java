@@ -8,7 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-	@Autowired
+
+    @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.inMemoryAuthentication().withUser("1").password("1")
@@ -17,8 +18,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/login").permitAll()
-                .antMatchers("/", "/admin**").access("hasRole('USER')").and()
-                .formLogin();
+        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll()
+                .antMatchers("/", "/admin**").access("hasRole('USER')");
+
+        // Config for Login Form
+        http.authorizeRequests().and().formLogin()//
+                // Submit URL of login page.
+                .loginProcessingUrl("/j_spring_security_check") // Submit URL
+                //.loginPage("/login")//
+                .defaultSuccessUrl("/welcome")//
+                .failureUrl("/login?error=true")//
+                .usernameParameter("username")//
+                .passwordParameter("password")
+                // Config for Logout Page
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
     }
 }

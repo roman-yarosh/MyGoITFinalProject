@@ -1,5 +1,7 @@
 package ua.goit.finall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -11,12 +13,15 @@ public class User extends BaseEntity{
     @Column(name = "USERNAME")
     private String username;
 
+    @JsonIgnore
     @Column(name = "PASSWORD")
     private String password;
 
+    @JsonIgnore
     @Transient
     private String confirmPassword;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "user")
     private Employee employee;
 

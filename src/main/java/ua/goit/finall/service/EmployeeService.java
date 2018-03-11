@@ -17,4 +17,5 @@ public interface EmployeeService {
     Employee findEmployeeByName(String name);
 
     void calculateSalary(Integer month, Integer year);
+
 }

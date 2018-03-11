@@ -1,5 +1,7 @@
 package ua.goit.finall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +14,7 @@ public class Event extends BaseEntity{
     @JoinColumn(name = "TYPE_ID")
     private EventType type;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "eventList")
     private List<Employee> employeeList;
 

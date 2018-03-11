@@ -1,5 +1,7 @@
 package ua.goit.finall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +27,7 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "POSITION_ID")
     private Position position;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "employee_events", joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id"))

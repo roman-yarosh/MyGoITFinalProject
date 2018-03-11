@@ -1,5 +1,7 @@
 package ua.goit.finall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -7,6 +9,7 @@ import java.math.BigDecimal;
 @Table(name = "salaries")
 public class Salary extends BaseEntity {
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;

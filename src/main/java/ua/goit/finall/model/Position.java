@@ -1,5 +1,7 @@
 package ua.goit.finall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,6 +16,7 @@ public class Position extends BaseEntity{
     @Column(name = "HOUR_SALARY")
     private BigDecimal hourSalary;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "position", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Employee> employeeList;
 
