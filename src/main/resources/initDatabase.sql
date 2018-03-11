@@ -112,12 +112,29 @@ DROP TABLE IF EXISTS events;
 CREATE TABLE events (
   EVENT_ID            INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   NAME                VARCHAR(128)     NOT NULL,
-  TYPE                VARCHAR(128)     NOT NULL,
-  START_DATETIME      DATETIME         NOT NULL,
-  END_DATETIME        DATETIME         NOT NULL,
-  CREATED_EMPLOYEE_ID INT              NOT NULL,
+  TYPE_ID             INT(10)          NOT NULL,
+  USER_ID             INT(10)          NOT NULL,
+  EVENT_DATE          DATETIME         NOT NULL,
+  HOURS               INT(10)          NOT NULL,
 
-  PRIMARY KEY (EVENT_ID) USING BTREE
+  PRIMARY KEY (EVENT_ID) USING BTREE,
+  FOREIGN KEY (TYPE_ID) REFERENCES event_types (TYPE_ID),
+  FOREIGN KEY (USER_ID) REFERENCES users (USER_ID)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- -----------------------------------------------------
+-- Table: event_types
+-- stores information about event types.
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS event_types;
+CREATE TABLE event_types (
+  TYPE_ID            INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  TYPE               VARCHAR(128)     NOT NULL,
+  RATE               DECIMAL          NOT NULL,
+
+  PRIMARY KEY (TYPE_ID) USING BTREE
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

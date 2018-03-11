@@ -18,8 +18,10 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "POSITION_ID")
     private Position position;
 
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Event> events;
+    @ManyToMany
+    @JoinTable(name = "employee_events", joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id"))
+    private List<Event> eventList;
 
     @ManyToOne
     @JoinColumn(name = "STATUS_ID")

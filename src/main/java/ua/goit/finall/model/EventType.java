@@ -1,19 +1,33 @@
 package ua.goit.finall.model;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "event_type")
+@Table(name = "event_types")
 public class EventType extends BaseEntity {
+
+    @Column(name = "TYPE")
     private String type;
+
+    @Column(name = "RATE")
     private Double rate;
 
-    @OneToOne(mappedBy = "type")
-    private Event event;
+    @OneToMany(mappedBy = "type", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Event> eventList;
 
     public EventType() {
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("EventType{");
+        sb.append("id='").append(super.getId()).append('\'');
+        sb.append("type='").append(type).append('\'');
+        sb.append(", rate=").append(rate);
+        sb.append(", eventList=").append(eventList);
+        sb.append('}');
+        return sb.toString();
     }
 
     public String getType() {
@@ -32,19 +46,11 @@ public class EventType extends BaseEntity {
         this.rate = rate;
     }
 
-    public Event getEvent() {
-        return event;
+    public List<Event> getEventList() {
+        return eventList;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
-    }
-
-    @Override
-    public String toString() {
-        return "EventType{" +
-                "type='" + type + '\'' +
-                ", rate=" + rate +
-                '}';
+    public void setEventList(List<Event> eventList) {
+        this.eventList = eventList;
     }
 }

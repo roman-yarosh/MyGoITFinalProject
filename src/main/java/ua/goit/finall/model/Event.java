@@ -1,22 +1,45 @@
 package ua.goit.finall.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "events")
 public class Event extends BaseEntity{
-    @OneToOne
-    private EventType type;
+
     @ManyToOne
-    private Employee employee;
-    @OneToOne
-    private Employee createdBy;
-    private Date date;
-    private Integer hour;
+    @JoinColumn(name = "TYPE_ID")
+    private EventType type;
+
+    @ManyToMany(mappedBy = "event")
+    private List<Employee> employeeList;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User createdByUser;
+
+    @Column(name = "EVENT_DATE")
+    private Date eventDate;
+
+    @Column(name = "HOURS")
+    private Integer hours;
+
+    public Event() {
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Event{");
+        sb.append("id=").append(super.getId());
+        sb.append("type=").append(type);
+        sb.append(", employeeList=").append(employeeList);
+        sb.append(", createdByUser=").append(createdByUser);
+        sb.append(", eventDate=").append(eventDate);
+        sb.append(", hours=").append(hours);
+        sb.append('}');
+        return sb.toString();
+    }
 
     public EventType getType() {
         return type;
@@ -26,35 +49,35 @@ public class Event extends BaseEntity{
         this.type = type;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public List<Employee> getEmployeeList() {
+        return employeeList;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 
-    public Employee getCreatedBy() {
-        return createdBy;
+    public User getCreatedByUser() {
+        return createdByUser;
     }
 
-    public void setCreatedBy(Employee createdBy) {
-        this.createdBy = createdBy;
+    public void setCreatedByUser(User createdByUser) {
+        this.createdByUser = createdByUser;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getEventDate() {
+        return eventDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
     }
 
-    public Integer getHour() {
-        return hour;
+    public Integer getHours() {
+        return hours;
     }
 
-    public void setHour(Integer hour) {
-        this.hour = hour;
+    public void setHours(Integer hours) {
+        this.hours = hours;
     }
 }
