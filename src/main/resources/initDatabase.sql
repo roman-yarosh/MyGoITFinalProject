@@ -29,15 +29,16 @@ CREATE TABLE employees (
   MIDDLE_NAME     VARCHAR(20),
   EMAIL           VARCHAR(50)      NOT NULL,
 --  SALLARY_RATE    DECIMAL          NOT NULL,
-  ROLE_ID         INT              NOT NULL,
-  POSITION_ID     INT              NOT NULL,
-  DEPARTMENT_ID   INT              NOT NULL,
-  EVENT_ID        INT,
-  STATUS_ID       INT,
+--  ROLE_ID         INT              NOT NULL,
+  POSITION_ID     INT(10)          NOT NULL,
+  DEPARTMENT_ID   INT(10)          NOT NULL,
+--  EVENT_ID        INT,
+  STATUS_ID       INT(10)           NOT NULL,
   REGISTERED_DATE DATETIME         NOT NULL,
+  USER_ID         INT(10)          NOT NULL,
 
   PRIMARY KEY (EMPLOYEE_ID) USING BTREE,
-  UNIQUE KEY UNI_LOGIN (LOGIN),
+--  UNIQUE KEY UNI_LOGIN (LOGIN),
   UNIQUE KEY UNI_EMAIL (EMAIL)
 )
   ENGINE = InnoDB
@@ -64,7 +65,7 @@ CREATE TABLE roles (
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-  USER_ID  INT          NOT NULL AUTO_INCREMENT,
+  USER_ID  INT(10)      NOT NULL AUTO_INCREMENT,
   USERNAME VARCHAR(255) NOT NULL,
   PASSWORD VARCHAR(255) NOT NULL,
 
