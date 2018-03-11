@@ -14,7 +14,7 @@ public class Salary extends BaseEntity {
     @Column(name = "MONTH")
     private Integer month;
 
-    @Column(name = "YAER")
+    @Column(name = "YEAR")
     private Integer year;
 
     @Column(name = "SALARY_SUM")

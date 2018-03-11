@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 //  mvn spring-boot:run
@@ -16,5 +17,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class SpringBootWebApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootWebApplication.class, args);
+
+        System.out.println("Password 123 encoded : " + new BCryptPasswordEncoder().encode("123"));
+
     }
+
 }

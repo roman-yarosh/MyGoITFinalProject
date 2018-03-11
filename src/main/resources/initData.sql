@@ -1,8 +1,64 @@
-INSERT INTO department (id, name) VALUES (1, 'pokenons');
-INSERT INTO position (id, hour_salary, name) VALUES (1,10,'rab');
-INSERT INTO employee (id, name, surname, email, POSITION_ID, DEPARTMENT_ID) VALUES (1, '1', '1', 5, 1, 1);
-INSERT INTO salary(id, month, salary_sum, year, employee_id) VALUES (1,1,0,0,1);
-INSERT INTO event_type(id, rate, type) VALUES (1, 0.5, 'work');
-INSERT INTO event (id, date, hour, type_id, created_by_id, employee_id) VALUES (1, 0, 3,1,1,1);
-INSERT INTO event (id, date, hour, type_id, created_by_id, employee_id) VALUES (2, 0, 2,1,1,1);
-INSERT INTO event (id, date, hour, type_id, created_by_id, employee_id) VALUES (3, 0, 2,1,1,1);
+INSERT INTO departments (id, name) VALUES (1, 'Rich business owners');
+
+INSERT INTO positions (id, hour_salary, name) VALUES (1, 5000, 'Business owner');
+
+INSERT INTO statuses (id, type) VALUES (1, 'Sick leave');
+INSERT INTO statuses (id, type) VALUES (2, 'Working');
+INSERT INTO statuses (id, type) VALUES (3, 'Vacation');
+
+-- Password 123 encoded: $2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa
+INSERT INTO users (id, username, password) VALUES (1, 'roman', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa');
+INSERT INTO users (id, username, password) VALUES (2, 'kostya', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa');
+INSERT INTO users (id, username, password) VALUES (3, 'nastya', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa');
+
+INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
+INSERT INTO roles (id, name) VALUES (2, 'ROLE_MODERATOR');
+INSERT INTO roles (id, name) VALUES (3, 'ROLE_ADMIN');
+
+INSERT INTO user_roles (user_id, role_id) VALUES (1, 3);
+INSERT INTO user_roles (user_id, role_id) VALUES (2, 3);
+INSERT INTO user_roles (user_id, role_id) VALUES (3, 3);
+
+INSERT INTO employees (id, name, surname, email, REGISTERED_DATE, POSITION_ID, DEPARTMENT_ID, STATUS_ID, USER_ID)
+VALUES (1, 'Roman', 'Yarosh', 'roman.yarosh@rich.com', now(), 1, 1, 1, 1);
+
+INSERT INTO employees (id, name, surname, email, REGISTERED_DATE, POSITION_ID, DEPARTMENT_ID, STATUS_ID, USER_ID)
+VALUES (2, 'Konstantin', 'Petrov', 'konstantin.petrov@rich.com', now(), 1, 1, 1, 2);
+
+INSERT INTO employees (id, name, surname, email, REGISTERED_DATE, POSITION_ID, DEPARTMENT_ID, STATUS_ID, USER_ID)
+VALUES (3, 'Nastya', 'Degtyarova', 'nastya.degtjarova@rich.com', now(), 1, 1, 1, 3);
+
+INSERT INTO salaries (id, month, year, salary_sum, employee_id) VALUES (1,1,2018,1200000, 1);
+INSERT INTO salaries (id, month, year, salary_sum, employee_id) VALUES (2,1,2018,1200000, 2);
+INSERT INTO salaries (id, month, year, salary_sum, employee_id) VALUES (3,1,2018,1200000, 3);
+
+INSERT INTO salaries (id, month, year, salary_sum, employee_id) VALUES (4,2,2018,1200000, 1);
+INSERT INTO salaries (id, month, year, salary_sum, employee_id) VALUES (5,2,2018,1200000, 2);
+INSERT INTO salaries (id, month, year, salary_sum, employee_id) VALUES (6,2,2018,1200000, 3);
+
+INSERT INTO salaries (id, month, year, salary_sum, employee_id) VALUES (7,3,2018,1200000, 1);
+INSERT INTO salaries (id, month, year, salary_sum, employee_id) VALUES (8,3,2018,1200000, 2);
+INSERT INTO salaries (id, month, year, salary_sum, employee_id) VALUES (9,3,2018,1200000, 3);
+
+INSERT INTO event_types(id, rate, type) VALUES (1, 1, 'Working day');
+INSERT INTO event_types(id, rate, type) VALUES (2, 1, 'Technical training');
+
+INSERT INTO events (id, event_date, hours, type_id, CREATED_USER_ID) VALUES (1, now() - INTERVAL 3 DAY, 8,1,1);
+INSERT INTO events (id, event_date, hours, type_id, CREATED_USER_ID) VALUES (2, now() - INTERVAL 3 DAY, 8,2,2);
+INSERT INTO events (id, event_date, hours, type_id, CREATED_USER_ID) VALUES (3, now() - INTERVAL 3 DAY, 8,1,3);
+INSERT INTO events (id, event_date, hours, type_id, CREATED_USER_ID) VALUES (4, now() - INTERVAL 2 DAY, 8,2,1);
+INSERT INTO events (id, event_date, hours, type_id, CREATED_USER_ID) VALUES (5, now() - INTERVAL 2 DAY, 8,1,2);
+INSERT INTO events (id, event_date, hours, type_id, CREATED_USER_ID) VALUES (6, now() - INTERVAL 2 DAY, 8,2,3);
+INSERT INTO events (id, event_date, hours, type_id, CREATED_USER_ID) VALUES (7, now() - INTERVAL 1 DAY, 8,1,1);
+INSERT INTO events (id, event_date, hours, type_id, CREATED_USER_ID) VALUES (8, now() - INTERVAL 1 DAY, 8,2,2);
+INSERT INTO events (id, event_date, hours, type_id, CREATED_USER_ID) VALUES (9, now() - INTERVAL 1 DAY, 8,1,3);
+
+INSERT INTO employee_events (employee_id, event_id) VALUES (1, 1);
+INSERT INTO employee_events (employee_id, event_id) VALUES (2, 2);
+INSERT INTO employee_events (employee_id, event_id) VALUES (3, 3);
+INSERT INTO employee_events (employee_id, event_id) VALUES (1, 4);
+INSERT INTO employee_events (employee_id, event_id) VALUES (2, 5);
+INSERT INTO employee_events (employee_id, event_id) VALUES (3, 6);
+INSERT INTO employee_events (employee_id, event_id) VALUES (1, 7);
+INSERT INTO employee_events (employee_id, event_id) VALUES (2, 8);
+INSERT INTO employee_events (employee_id, event_id) VALUES (3, 9);

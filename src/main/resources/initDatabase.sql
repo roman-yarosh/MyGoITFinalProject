@@ -16,33 +16,6 @@ CREATE SCHEMA IF NOT EXISTS goit_final_project
 USE goit_final_project;
 
 -- -----------------------------------------------------
--- Table: employees
--- stores information about employees.
--- -----------------------------------------------------
-DROP TABLE IF EXISTS employees;
-CREATE TABLE employees (
-  ID              INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  NAME            VARCHAR(20)      NOT NULL,
-  SURNAME         VARCHAR(20)      NOT NULL,
-  MIDDLE_NAME     VARCHAR(20),
-  EMAIL           VARCHAR(50)      NOT NULL,
-  REGISTERED_DATE DATETIME         NOT NULL,
-  POSITION_ID     INT(10)          NOT NULL,
-  DEPARTMENT_ID   INT(10)          NOT NULL,
-  STATUS_ID       INT(10)          NOT NULL,
-  USER_ID         INT(10)          NOT NULL,
-
-  PRIMARY KEY (ID) USING BTREE,
-  FOREIGN KEY (POSITION_ID) REFERENCES positions (POSITION_ID),
-  FOREIGN KEY (DEPARTMENT_ID) REFERENCES departments (DEPARTMENT_ID),
-  FOREIGN KEY (STATUS_ID) REFERENCES statuses (STATUS_ID),
-  FOREIGN KEY (USER_ID) REFERENCES users (USER_ID),
-  UNIQUE KEY UNI_EMAIL (EMAIL)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
--- -----------------------------------------------------
 -- Table: roles
 -- stores information about user roles.
 -- -----------------------------------------------------
@@ -105,25 +78,6 @@ CREATE TABLE positions (
   DEFAULT CHARSET = utf8;
 
 -- -----------------------------------------------------
--- Table: events
--- stores information about events.
--- -----------------------------------------------------
-DROP TABLE IF EXISTS events;
-CREATE TABLE events (
-  ID         INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  EVENT_DATE DATETIME         NOT NULL,
-  HOURS      INT(10)          NOT NULL,
-  TYPE_ID    INT(10)          NOT NULL,
-  USER_ID    INT(10)          NOT NULL,
-
-  PRIMARY KEY (ID) USING BTREE,
-  FOREIGN KEY (TYPE_ID) REFERENCES event_types (TYPE_ID),
-  FOREIGN KEY (USER_ID) REFERENCES users (USER_ID)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
--- -----------------------------------------------------
 -- Table: event_types
 -- stores information about event types.
 -- -----------------------------------------------------
@@ -139,6 +93,25 @@ CREATE TABLE event_types (
   DEFAULT CHARSET = utf8;
 
 -- -----------------------------------------------------
+-- Table: events
+-- stores information about events.
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS events;
+CREATE TABLE events (
+  ID              INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  EVENT_DATE      DATETIME         NOT NULL,
+  HOURS           INT(10)          NOT NULL,
+  TYPE_ID         INT(10)          NOT NULL,
+  CREATED_USER_ID INT(10)          NOT NULL,
+
+  PRIMARY KEY (ID) USING BTREE,
+  FOREIGN KEY (TYPE_ID) REFERENCES event_types (ID),
+  FOREIGN KEY (CREATED_USER_ID) REFERENCES users (ID)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- -----------------------------------------------------
 -- Table: statuses
 -- stores information about statuses.
 -- -----------------------------------------------------
@@ -149,6 +122,33 @@ CREATE TABLE statuses (
 
   PRIMARY KEY (ID) USING BTREE,
   UNIQUE KEY UNI_TYPE (TYPE)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- -----------------------------------------------------
+-- Table: employees
+-- stores information about employees.
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS employees;
+CREATE TABLE employees (
+  ID              INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  NAME            VARCHAR(20)      NOT NULL,
+  SURNAME         VARCHAR(20)      NOT NULL,
+  MIDDLE_NAME     VARCHAR(20),
+  EMAIL           VARCHAR(50)      NOT NULL,
+  REGISTERED_DATE DATETIME         NOT NULL,
+  POSITION_ID     INT(10)          NOT NULL,
+  DEPARTMENT_ID   INT(10)          NOT NULL,
+  STATUS_ID       INT(10)          NOT NULL,
+  USER_ID         INT(10)          NOT NULL,
+
+  PRIMARY KEY (ID) USING BTREE,
+  FOREIGN KEY (POSITION_ID) REFERENCES positions (POSITION_ID),
+  FOREIGN KEY (DEPARTMENT_ID) REFERENCES departments (DEPARTMENT_ID),
+  FOREIGN KEY (STATUS_ID) REFERENCES statuses (STATUS_ID),
+  FOREIGN KEY (USER_ID) REFERENCES users (USER_ID),
+  UNIQUE KEY UNI_EMAIL (EMAIL)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

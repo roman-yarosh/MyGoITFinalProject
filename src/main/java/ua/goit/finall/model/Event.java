@@ -16,7 +16,7 @@ public class Event extends BaseEntity{
     private List<Employee> employeeList;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "CREATED_USER_ID")
     private User createdByUser;
 
     @Column(name = "EVENT_DATE")
