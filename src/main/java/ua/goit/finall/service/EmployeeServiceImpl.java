@@ -33,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         for (Employee employee : employeeRepository.findAllWithDeps()) {
             double salarySum = 0;
             double hourSalary = employee.getPosition().getHourSalary().doubleValue();
-            for (Event event : employee.getEvents()) {
+            for (Event event : employee.getEventList()) {
                 salarySum += event.getType().getRate() * hourSalary;
             }
 
