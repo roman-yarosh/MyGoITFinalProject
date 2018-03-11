@@ -11,7 +11,7 @@ public class Status extends BaseEntity{
     private String type;
 
     @OneToMany(mappedBy = "status", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Employee> employee;
+    private List<Employee> employeeList;
 
     public Status() {
     }
@@ -21,7 +21,7 @@ public class Status extends BaseEntity{
         final StringBuilder sb = new StringBuilder("Status{");
         sb.append("id='").append(super.getId()).append('\'');
         sb.append("type='").append(type).append('\'');
-        sb.append(", employee=").append(employee);
+        sb.append(", employeeList=").append(employeeList);
         sb.append('}');
         return sb.toString();
     }
@@ -34,11 +34,11 @@ public class Status extends BaseEntity{
         this.type = type;
     }
 
-    public List<Employee> getEmployee() {
-        return employee;
+    public List<Employee> getEmployeeList() {
+        return employeeList;
     }
 
-    public void setEmployee(List<Employee> employee) {
-        this.employee = employee;
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 }

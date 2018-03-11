@@ -14,7 +14,7 @@ public class Role extends BaseEntity{
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    private Set<User> userSet;
 
     public Role() {
     }
@@ -24,7 +24,7 @@ public class Role extends BaseEntity{
         final StringBuilder sb = new StringBuilder("Role{");
         sb.append("id='").append(super.getId()).append('\'');
         sb.append("name='").append(name).append('\'');
-        sb.append(", users=").append(users);
+        sb.append(", userSet=").append(userSet);
         sb.append('}');
         return sb.toString();
     }
@@ -37,11 +37,11 @@ public class Role extends BaseEntity{
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<User> getUserSet() {
+        return userSet;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
     }
 }

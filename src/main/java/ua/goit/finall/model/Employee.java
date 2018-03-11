@@ -15,6 +15,7 @@ public class Employee extends BaseEntity {
     private Department department;
 
     @ManyToOne
+    @JoinColumn(name = "POSITION_ID")
     private Position position;
 
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
