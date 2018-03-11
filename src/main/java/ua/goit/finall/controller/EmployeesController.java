@@ -25,7 +25,7 @@ public class EmployeesController {
         Employee employee = employeeService.findEmployeeByName(userName);
         model.put("emp", employee);
         logger.info("Empn - " + userName);
-        logger.info("Event - " + employee.getEvents());
+        logger.info("Event - " + employee.getEventList());
 
         return "employeeInfo";
     }

@@ -12,7 +12,7 @@ public class Event extends BaseEntity{
     @JoinColumn(name = "TYPE_ID")
     private EventType type;
 
-    @ManyToMany(mappedBy = "event")
+    @ManyToMany(mappedBy = "eventList")
     private List<Employee> employeeList;
 
     @ManyToOne
