@@ -6,7 +6,13 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    Iterable<Employee> getAll();
+    Employee getById(Long id);
+
+    void save(Employee employee);
+
+    void delete(Long id);
+
+    List<Employee> getAll();
 
     Employee findEmployeeByName(String name);
 
