@@ -23,8 +23,10 @@ public class SchedTask {
     private EmployeeService employeeService;
     private int count;
 
-//    @Scheduled(cron = "30 15 1 * * ")
-    @Scheduled(fixedRate = 1000)
+    // second, minute, hour, day of month, month, day(s) of week
+    //@Scheduled(cron = "30 15 1 * * ")
+    @Scheduled(cron = "0 0 10 1 * *") // At 10 o'clock at 1 day of a month.
+//    @Scheduled(fixedRate = 1000)
     public void passLetter(){
         System.out.println("Email send");
         count++;
