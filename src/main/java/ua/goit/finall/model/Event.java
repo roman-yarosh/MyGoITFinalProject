@@ -20,6 +20,7 @@ public class Event extends BaseEntity{
     private User createdByUser;
 
     @Column(name = "EVENT_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date eventDate;
 
     @Column(name = "HOURS")

@@ -8,10 +8,17 @@ import java.util.List;
 @Table(name = "employees")
 public class Employee extends BaseEntity {
 
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "SURNAME")
     private String surname;
 
+    @Column(name = "MIDDLE_NAME")
+    private String middleName;
+
     @ManyToOne
+    @JoinColumn(name = "DEPARTMENT_ID")
     private Department department;
 
     @ManyToOne
@@ -30,9 +37,11 @@ public class Employee extends BaseEntity {
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Salary> salary;
 
+    @Column(name = "REGISTERED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date registred;
+    private Date registredDate;
 
+    @Column(name = "EMAIL")
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -45,15 +54,18 @@ public class Employee extends BaseEntity {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Employee{");
+        sb.append("id='").append(super.getId()).append('\'');
         sb.append("name='").append(name).append('\'');
         sb.append(", surname='").append(surname).append('\'');
+        sb.append(", middleName='").append(middleName).append('\'');
         sb.append(", department=").append(department);
         sb.append(", position=").append(position);
-        sb.append(", events=").append(events);
+        sb.append(", eventList=").append(eventList);
         sb.append(", status=").append(status);
         sb.append(", salary=").append(salary);
-        sb.append(", registred=").append(registred);
+        sb.append(", registredDate=").append(registredDate);
         sb.append(", email='").append(email).append('\'');
+        sb.append(", user=").append(user);
         sb.append('}');
         return sb.toString();
     }
@@ -74,6 +86,14 @@ public class Employee extends BaseEntity {
         this.surname = surname;
     }
 
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
     public Department getDepartment() {
         return department;
     }
@@ -90,12 +110,12 @@ public class Employee extends BaseEntity {
         this.position = position;
     }
 
-    public List<Event> getEvents() {
-        return events;
+    public List<Event> getEventList() {
+        return eventList;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    public void setEventList(List<Event> eventList) {
+        this.eventList = eventList;
     }
 
     public Status getStatus() {
@@ -114,12 +134,12 @@ public class Employee extends BaseEntity {
         this.salary = salary;
     }
 
-    public Date getRegistred() {
-        return registred;
+    public Date getRegistredDate() {
+        return registredDate;
     }
 
-    public void setRegistred(Date registred) {
-        this.registred = registred;
+    public void setRegistredDate(Date registredDate) {
+        this.registredDate = registredDate;
     }
 
     public String getEmail() {
@@ -128,5 +148,13 @@ public class Employee extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

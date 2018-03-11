@@ -1,14 +1,17 @@
 package ua.goit.finall.model;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "departments")
 public class Department extends BaseEntity{
+
+    @Column(name = "NAME")
     private String name;
-    @OneToMany
+
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Employee> employeeList;
+
+
 }
