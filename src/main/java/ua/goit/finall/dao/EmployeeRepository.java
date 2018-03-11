@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
+
     Employee findEmployeeByName(String name);
 
 //    @Query("select e from Employee e join fetch e.events es join fetch e.salary")
