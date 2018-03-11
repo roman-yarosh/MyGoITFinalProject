@@ -1,4 +1,4 @@
-package ua.goit.finall.schedle;
+package ua.goit.finall.schedule;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -15,7 +15,7 @@ import java.io.File;
 
 @Component
 
-public class SchedTask {
+public class ScheduleTask {
 
     @Autowired
     private JavaMailSender mailSender;
@@ -23,7 +23,7 @@ public class SchedTask {
     private EmployeeService employeeService;
     private int count;
 
-    // second, minute, hour, day of month, month, day(s) of week
+    //Scheduled : second, minute, hour, day of month, month, day(s) of week
     //@Scheduled(cron = "30 15 1 * * ")
     @Scheduled(cron = "0 0 10 1 * *") // At 10 o'clock at 1 day of a month.
 //    @Scheduled(fixedRate = 1000)
