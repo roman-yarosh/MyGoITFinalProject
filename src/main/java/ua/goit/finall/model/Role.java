@@ -15,10 +15,6 @@ public class Role extends BaseEntity{
     @Column(name = "NAME")
     private String name;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> userSet;
-
     public Role() {
     }
 
@@ -27,7 +23,6 @@ public class Role extends BaseEntity{
         final StringBuilder sb = new StringBuilder("Role{");
         sb.append("id='").append(super.getId()).append('\'');
         sb.append("name='").append(name).append('\'');
-        sb.append(", userSet=").append(userSet);
         sb.append('}');
         return sb.toString();
     }
@@ -40,11 +35,4 @@ public class Role extends BaseEntity{
         this.name = name;
     }
 
-    public Set<User> getUserSet() {
-        return userSet;
-    }
-
-    public void setUserSet(Set<User> userSet) {
-        this.userSet = userSet;
-    }
 }

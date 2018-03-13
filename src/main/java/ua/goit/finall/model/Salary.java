@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Table(name = "salaries")
 public class Salary extends BaseEntity {
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;

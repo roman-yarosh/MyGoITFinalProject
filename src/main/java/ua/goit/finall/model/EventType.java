@@ -13,9 +13,6 @@ public class EventType extends BaseEntity {
     @Column(name = "RATE")
     private Double rate;
 
-    @OneToMany(mappedBy = "type", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Event> eventList;
-
     public EventType() {
     }
 
@@ -25,7 +22,6 @@ public class EventType extends BaseEntity {
         sb.append("id='").append(super.getId()).append('\'');
         sb.append("type='").append(type).append('\'');
         sb.append(", rate=").append(rate);
-        sb.append(", eventList=").append(eventList);
         sb.append('}');
         return sb.toString();
     }
@@ -44,13 +40,5 @@ public class EventType extends BaseEntity {
 
     public void setRate(Double rate) {
         this.rate = rate;
-    }
-
-    public List<Event> getEventList() {
-        return eventList;
-    }
-
-    public void setEventList(List<Event> eventList) {
-        this.eventList = eventList;
     }
 }
