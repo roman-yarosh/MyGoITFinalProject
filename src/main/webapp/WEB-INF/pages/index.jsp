@@ -40,3 +40,4 @@
 </html>
 Регистрация для пользователя отсуда или от Густава https://github.com/proselytear/SpringSecurityApp
 Валидацию при вводе данніх можно взять тут User.java : https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d
+Security + JWT application.properties тут: https://medium.com/@nydiarra/secure-a-spring-boot-rest-api-with-json-web-token-reference-to-angular-integration-e57a25806c50
