@@ -1,11 +1,13 @@
 package ua.goit.finall.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -14,24 +16,44 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.inMemoryAuthentication().withUser("1").password("1").roles("USER");
+        auth.inMemoryAuthentication().withUser("roman").password("1").roles("USER");
+        auth.inMemoryAuthentication().withUser("kostya").password("1").roles("USER");
+        auth.inMemoryAuthentication().withUser("nastya").password("1").roles("USER");
         auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
     }
-	
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
+
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
+/* work but simple
+        http
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .and()
+                .httpBasic();
+*/
+
         http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll()
-                .antMatchers( "/","/admin**").hasAnyRole("USER","ADMIN");
+
+                .antMatchers( "/employeeInfo").hasAnyRole("USER","ADMIN").anyRequest().authenticated()
+                .antMatchers( "/admin**").hasAnyRole("USER","ADMIN").anyRequest().authenticated()
 
         // Config for Login Form
-        http.authorizeRequests().and().formLogin()//
+        .and().formLogin()//
                 // Submit URL of login page.
-                .loginProcessingUrl("/j_spring_security_check") // Submit URL
-                .loginPage("/login")//
-                .defaultSuccessUrl("/welcome")//
-                .failureUrl("/login?error=true")//
-                .usernameParameter("username")//
-                .passwordParameter("password")
+                //.loginProcessingUrl("/j_spring_security_check") // Submit URL
+                //.loginPage("/login")//when custom login form will be ready
+                //.defaultSuccessUrl("/welcome")//
+                //.failureUrl("/login?error=true")//
+                //.usernameParameter("username")//
+                //.passwordParameter("password")
                 // Config for Logout Page
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
     }
