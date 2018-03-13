@@ -36,4 +36,7 @@
     <p><a href="http://localhost:8080/api/roles/">http://localhost:8080/api/roles/</p>
     <p><a href="http://localhost:8080/api/roles/1">http://localhost:8080/api/roles/1</p>
 </body>
+
 </html>
+Регистрация для пользователя отсуда или от Густава https://github.com/proselytear/SpringSecurityApp
+Валидацию при вводе данніх можно взять тут User.java : https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d
