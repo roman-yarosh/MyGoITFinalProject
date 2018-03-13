@@ -22,7 +22,7 @@ public class EmployeesController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping("/employeeInfo")
+    @RequestMapping(value = "/employeeInfo")
     public String employeeInfo(Map<String, Object> model) {
         String userName = getLoggedinUserName();
         Employee employee = employeeService.findEmployeeByName(userName);

@@ -17,6 +17,7 @@ public class ScheduleTask {
 
     @Autowired
     private JavaMailSender mailSender;
+
     @Autowired
     private EmployeeService employeeService;
     private int count;
@@ -25,7 +26,7 @@ public class ScheduleTask {
     //@Scheduled(cron = "30 15 1 * * ")
     @Scheduled(cron = "0 0 10 1 * *") // At 10 o'clock at 1 day of a month.
 //    @Scheduled(fixedRate = 1000)
-    public void passLetter(){
+    public void passLetter() {
         System.out.println("Email send");
         count++;
         System.out.println("Count" + count);
@@ -38,9 +39,8 @@ public class ScheduleTask {
 
     }
 
-    public void sendMessageWithAttachment(
-            String to, String subject, String text, String pathToAttachment) throws MessagingException {
-        // ...
+    public void sendMessageWithAttachment(String to, String subject, String text,
+                                          String pathToAttachment) throws MessagingException {
 
         MimeMessage message = mailSender.createMimeMessage();
 
@@ -55,7 +55,6 @@ public class ScheduleTask {
         helper.addAttachment("Invoice", file);
 
         mailSender.send(message);
-        // ...
     }
 
 
