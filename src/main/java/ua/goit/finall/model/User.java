@@ -32,10 +32,8 @@ public class User extends BaseEntity{
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");
-        sb.append("id='").append(super.getId()).append('\'');
-        sb.append("username='").append(username).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append(", confirmPassword='").append(confirmPassword).append('\'');
+        sb.append("id=").append(super.getId());
+        sb.append(", username='").append(username).append('\'').append('\n');
         sb.append(", roles=").append(roles);
         sb.append('}');
         return sb.toString();

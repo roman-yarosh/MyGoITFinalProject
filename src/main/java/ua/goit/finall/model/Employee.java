@@ -53,8 +53,8 @@ public class Employee extends BaseEntity {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Employee{");
-        sb.append("id='").append(super.getId()).append('\'');
-        sb.append("name='").append(name).append('\'');
+        sb.append("id=").append(super.getId());
+        sb.append(", name='").append(name).append('\'');
         sb.append(", surname='").append(surname).append('\'');
         sb.append(", middleName='").append(middleName).append('\'');
         sb.append(", department=").append(department);

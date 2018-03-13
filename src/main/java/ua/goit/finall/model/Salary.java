@@ -29,7 +29,6 @@ public class Salary extends BaseEntity {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Salary{");
         sb.append("id=").append(super.getId());
-        sb.append("employee=").append(employee);
         sb.append(", month=").append(month);
         sb.append(", year=").append(year);
         sb.append(", salarySum=").append(salarySum);

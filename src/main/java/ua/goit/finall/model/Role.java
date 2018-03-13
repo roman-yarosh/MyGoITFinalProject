@@ -21,8 +21,8 @@ public class Role extends BaseEntity{
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Role{");
-        sb.append("id='").append(super.getId()).append('\'');
-        sb.append("name='").append(name).append('\'');
+        sb.append("id=").append(super.getId());
+        sb.append(", name='").append(name).append('\'');
         sb.append('}');
         return sb.toString();
     }

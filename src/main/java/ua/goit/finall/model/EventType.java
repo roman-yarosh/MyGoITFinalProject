@@ -19,8 +19,8 @@ public class EventType extends BaseEntity {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("EventType{");
-        sb.append("id='").append(super.getId()).append('\'');
-        sb.append("type='").append(type).append('\'');
+        sb.append("id=").append(super.getId());
+        sb.append(", type='").append(type).append('\'');
         sb.append(", rate=").append(rate);
         sb.append('}');
         return sb.toString();

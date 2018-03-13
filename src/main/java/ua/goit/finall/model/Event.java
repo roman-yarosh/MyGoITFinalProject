@@ -32,7 +32,7 @@ public class Event extends BaseEntity{
     public String toString() {
         final StringBuilder sb = new StringBuilder("Event{");
         sb.append("id=").append(super.getId());
-        sb.append("type=").append(type);
+        sb.append(", type=").append(type);
         sb.append(", createdByUser=").append(createdByUser);
         sb.append(", eventDate=").append(eventDate);
         sb.append(", hours=").append(hours);

@@ -22,8 +22,8 @@ public class Position extends BaseEntity{
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Position{");
-        sb.append("id='").append(super.getId()).append('\'');
-        sb.append("name='").append(name).append('\'');
+        sb.append("id=").append(super.getId());
+        sb.append(", name='").append(name).append('\'');
         sb.append(", hourSalary=").append(hourSalary);
         sb.append('}');
         return sb.toString();

@@ -18,8 +18,8 @@ public class Status extends BaseEntity{
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Status{");
-        sb.append("id='").append(super.getId()).append('\'');
-        sb.append("type='").append(type).append('\'');
+        sb.append("id=").append(super.getId());
+        sb.append(", type='").append(type).append('\'');
         sb.append('}');
         return sb.toString();
     }
