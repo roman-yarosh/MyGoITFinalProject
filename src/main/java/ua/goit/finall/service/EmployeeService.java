@@ -4,15 +4,7 @@ import ua.goit.finall.model.Employee;
 
 import java.util.List;
 
-public interface EmployeeService {
-
-    Employee getById(Long id);
-
-    void save(Employee employee);
-
-    void delete(Long id);
-
-    List<Employee> getAll();
+public interface EmployeeService extends BaseService<Employee> {
 
     Employee findEmployeeByName(String name);
 

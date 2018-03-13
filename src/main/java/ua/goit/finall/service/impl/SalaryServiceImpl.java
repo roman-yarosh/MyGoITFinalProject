@@ -1,14 +1,15 @@
-package ua.goit.finall.service;
+package ua.goit.finall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.goit.finall.dao.SalaryRepository;
 import ua.goit.finall.model.Salary;
+import ua.goit.finall.service.SalaryService;
 
 import java.util.List;
 
 @Service
-public class SalaryServiceImpl implements SalaryService{
+public class SalaryServiceImpl implements SalaryService {
 
     @Autowired
     SalaryRepository salaryRepository;
@@ -26,6 +27,11 @@ public class SalaryServiceImpl implements SalaryService{
     @Override
     public void delete(Long id) {
         salaryRepository.delete(id);
+    }
+
+    @Override
+    public Salary update(Salary entity) {
+        return null;
     }
 
     @Override

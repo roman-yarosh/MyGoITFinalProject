@@ -1,14 +1,15 @@
-package ua.goit.finall.service;
+package ua.goit.finall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.goit.finall.dao.UserRepository;
 import ua.goit.finall.model.User;
+import ua.goit.finall.service.UserService;
 
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
@@ -26,6 +27,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public void delete(Long id) {
         userRepository.delete(id);
+    }
+
+    @Override
+    public User update(User entity) {
+        return null;
     }
 
     @Override

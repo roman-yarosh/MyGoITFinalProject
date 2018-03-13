@@ -12,9 +12,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 
-
 @Component
-
 public class ScheduleTask {
 
     @Autowired
@@ -33,6 +31,7 @@ public class ScheduleTask {
         System.out.println("Count" + count);
 
         //Настя нужно передать месяц и год в расчет зарплаты и подправить алгоритм рассчета
+        // Внесу свои 5 копеек. У нас почисовая ставка, нужно отталкиваться отработаного времени. 
 
         //!!!!!!employeeService.calculateSalary(1, 1);
         //sendMessageWithAttachment();
