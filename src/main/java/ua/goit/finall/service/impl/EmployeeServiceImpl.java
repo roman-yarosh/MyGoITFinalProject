@@ -1,10 +1,11 @@
-package ua.goit.finall.service;
+package ua.goit.finall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.goit.finall.dao.EmployeeRepository;
 import ua.goit.finall.model.Employee;
 import ua.goit.finall.model.Event;
+import ua.goit.finall.service.EmployeeService;
 
 import java.util.List;
 
@@ -27,6 +28,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void delete(Long id) {
         employeeRepository.delete(id);
+    }
+
+    @Override
+    public Employee update(Employee entity) {
+        return null;
     }
 
     @Override

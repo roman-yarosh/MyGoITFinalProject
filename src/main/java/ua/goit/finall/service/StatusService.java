@@ -4,13 +4,6 @@ import ua.goit.finall.model.Status;
 
 import java.util.List;
 
-public interface StatusService {
+public interface StatusService extends BaseService<Status> {
 
-    Status getById(Long id);
-
-    void save(Status status);
-
-    void delete(Long id);
-
-    List<Status> getAll();
 }

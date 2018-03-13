@@ -1,14 +1,15 @@
-package ua.goit.finall.service;
+package ua.goit.finall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.goit.finall.dao.EventTypeRepository;
 import ua.goit.finall.model.EventType;
+import ua.goit.finall.service.EventTypeService;
 
 import java.util.List;
 
 @Service
-public class EventTypeServiceImpl implements EventTypeService{
+public class EventTypeServiceImpl implements EventTypeService {
 
     @Autowired
     EventTypeRepository eventTypeRepository;
@@ -26,6 +27,11 @@ public class EventTypeServiceImpl implements EventTypeService{
     @Override
     public void delete(Long id) {
         eventTypeRepository.delete(id);
+    }
+
+    @Override
+    public EventType update(EventType entity) {
+        return null;
     }
 
     @Override

@@ -4,14 +4,6 @@ import ua.goit.finall.model.Position;
 
 import java.util.List;
 
-public interface PositionService {
-
-    Position getById(Long id);
-
-    void save(Position position);
-
-    void delete(Long id);
-
-    List<Position> getAll();
+public interface PositionService extends BaseService<Position> {
 
 }

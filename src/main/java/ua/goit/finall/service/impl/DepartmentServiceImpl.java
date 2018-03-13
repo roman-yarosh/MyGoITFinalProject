@@ -1,14 +1,15 @@
-package ua.goit.finall.service;
+package ua.goit.finall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.goit.finall.dao.DepartmentRepository;
 import ua.goit.finall.model.Department;
+import ua.goit.finall.service.DepartmentService;
 
 import java.util.List;
 
 @Service
-public class DepartmentServiceImpl implements DepartmentService{
+public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     DepartmentRepository departmentRepository;
@@ -26,6 +27,11 @@ public class DepartmentServiceImpl implements DepartmentService{
     @Override
     public void delete(Long id) {
         departmentRepository.delete(id);
+    }
+
+    @Override
+    public Department update(Department entity) {
+        return null;
     }
 
     @Override
