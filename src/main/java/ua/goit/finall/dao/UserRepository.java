@@ -7,4 +7,5 @@ import ua.goit.finall.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    User findUserByUsername(String username);
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ua.goit.finall.dao.EmployeeRepository;
 import ua.goit.finall.model.Employee;
 import ua.goit.finall.model.Event;
+import ua.goit.finall.model.User;
 import ua.goit.finall.service.EmployeeService;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void save(Employee employee) {
         employeeRepository.save(employee);
+        //!!!!!! Добавиь присвоение роли
     }
 
     @Override
@@ -43,6 +45,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee findEmployeeByName(String name) {
         return employeeRepository.findEmployeeByName(name);
+    }
+
+    @Override
+    public Employee findEmployeeByUser(User user) {
+        return employeeRepository.findEmployeeByUser(user);
     }
 
     @Override

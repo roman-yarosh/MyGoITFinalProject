@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.finall.model.Employee;
+import ua.goit.finall.model.User;
 import ua.goit.finall.service.EmployeeService;
+import ua.goit.finall.service.UserService;
 
 import java.util.Map;
 
@@ -22,10 +24,15 @@ public class EmployeesController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private UserService userService;
+
+
     @RequestMapping(value = "/employeeInfo")
     public String employeeInfo(Map<String, Object> model) {
         String userName = getLoggedinUserName();
-        Employee employee = employeeService.findEmployeeByName(userName);
+        User user = userService.findUserByUsername(userName);
+        Employee employee = employeeService.findEmployeeByUser(user);
         model.put("emp", employee);
         logger.info("Empn - " + userName);
         logger.info("Event - " + employee.getEventList());
