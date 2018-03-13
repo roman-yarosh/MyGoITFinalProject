@@ -46,6 +46,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers( "/employeeInfo").hasAnyRole("USER","ADMIN").anyRequest().authenticated()
                 .antMatchers( "/admin**").hasAnyRole("USER","ADMIN").anyRequest().authenticated()
 
+                .antMatchers( "/api/employees**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/departments**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/events**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/eventTypes**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/positions**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/salaries**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/statuses**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/users**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/roles**").hasRole("ADMIN").anyRequest().authenticated()
+
         // Config for Login Form
         .and().formLogin()//
                 // Submit URL of login page.
