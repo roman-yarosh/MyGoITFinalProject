@@ -1,4 +1,4 @@
-package ua.goit.finall.schedule;
+package ua.goit.finall.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 
 @Component
-public class ScheduleTask {
+public class ScheduleService {
 
     @Autowired
     private JavaMailSender mailSender;
@@ -25,7 +25,7 @@ public class ScheduleTask {
     //Scheduled : second, minute, hour, day of month, month, day(s) of week
     //@Scheduled(cron = "30 15 1 * * ")
     @Scheduled(cron = "0 0 10 1 * *") // At 10 o'clock at 1 day of a month.
-//    @Scheduled(fixedRate = 1000)
+    //@Scheduled(fixedRate = 10000)
     public void passLetter() {
         System.out.println("Email send");
         count++;

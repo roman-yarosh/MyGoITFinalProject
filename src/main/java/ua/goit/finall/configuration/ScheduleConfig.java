@@ -1,4 +1,4 @@
-package ua.goit.finall.schedule;
+package ua.goit.finall.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -6,14 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import ua.goit.finall.service.ScheduleService;
 
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("ua.goit.finall.schedule")
-@Import(ScheduleTask.class)
-//@EnableScheduling
-public class SheduleConfig {
+public class ScheduleConfig {
 
     @Bean
     public JavaMailSender getJavaMailSender() {

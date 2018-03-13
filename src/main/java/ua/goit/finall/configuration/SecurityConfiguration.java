@@ -1,4 +1,4 @@
-package ua.goit.finall.security;
+package ua.goit.finall.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,8 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    public void configureGlobalSecurity(AuthenticationManagerBuilder auth)
-            throws Exception {
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+
         auth.inMemoryAuthentication().withUser("roman").password("1").roles("USER");
         auth.inMemoryAuthentication().withUser("kostya").password("1").roles("USER");
         auth.inMemoryAuthentication().withUser("nastya").password("1").roles("USER");
