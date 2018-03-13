@@ -39,9 +39,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .and()
                 .httpBasic();
 */
-
-        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll()
-
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/", "/login", "/logout").permitAll()
                 .antMatchers( "/employeeInfo").hasAnyRole("USER","ADMIN").anyRequest().authenticated()
                 .antMatchers( "/admin**").hasAnyRole("USER","ADMIN").anyRequest().authenticated()
 
@@ -108,8 +109,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	public void configure(WebSecurity web) throws Exception {
-	    web
+	public void configure(WebSecurity mvc) throws Exception {
+	    mvc
 	       .ignoring()
 	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
 	}

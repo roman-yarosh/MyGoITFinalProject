@@ -6,7 +6,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import ua.goit.finall.service.EmployeeService;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
