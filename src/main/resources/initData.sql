@@ -2,8 +2,8 @@ INSERT INTO departments (id, name) VALUES (1, 'Rich business owners');
 
 INSERT INTO positions (id, hour_salary, name) VALUES (1, 5000, 'Business owner');
 
-INSERT INTO statuses (id, type) VALUES (1, 'Sick leave');
-INSERT INTO statuses (id, type) VALUES (2, 'Working');
+INSERT INTO statuses (id, type) VALUES (1, 'Working');
+INSERT INTO statuses (id, type) VALUES (2, 'Sick leave');
 INSERT INTO statuses (id, type) VALUES (3, 'Vacation');
 
 -- Password 123 encoded: $2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa
