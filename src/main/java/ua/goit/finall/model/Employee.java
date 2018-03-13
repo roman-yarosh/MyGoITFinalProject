@@ -61,11 +61,11 @@ public class Employee extends BaseEntity {
         sb.append("name='").append(name).append('\'');
         sb.append(", surname='").append(surname).append('\'');
         sb.append(", middleName='").append(middleName).append('\'');
-        sb.append(", department=").append(department);
-        sb.append(", position=").append(position);
-        sb.append(", eventList=").append(eventList);
-        sb.append(", status=").append(status);
-        sb.append(", salary=").append(salary);
+        sb.append(", department=").append(department.getName());
+        sb.append(", position=").append(position.getName());
+        sb.append(", eventList=").append(eventList.size());
+        sb.append(", status=").append(status.getType());
+        sb.append(", salary=").append(salary.size());
         sb.append(", registredDate=").append(registredDate);
         sb.append(", email='").append(email).append('\'');
         sb.append(", user=").append(user);

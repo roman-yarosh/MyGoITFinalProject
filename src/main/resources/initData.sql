@@ -7,9 +7,9 @@ INSERT INTO statuses (id, type) VALUES (2, 'Working');
 INSERT INTO statuses (id, type) VALUES (3, 'Vacation');
 
 -- Password 123 encoded: $2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa
-INSERT INTO users (id, username, password) VALUES (1, 'roman', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa');
-INSERT INTO users (id, username, password) VALUES (2, 'kostya', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa');
-INSERT INTO users (id, username, password) VALUES (3, 'nastya', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa');
+INSERT INTO users (id, username, password, active) VALUES (1, 'roman', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa', 1);
+INSERT INTO users (id, username, password, active) VALUES (2, 'kostya', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa', 1);
+INSERT INTO users (id, username, password, active) VALUES (3, 'nastya', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa', 1);
 
 INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
 INSERT INTO roles (id, name) VALUES (2, 'ROLE_MODERATOR');

@@ -18,6 +18,10 @@ public class User extends BaseEntity{
     private String password;
 
     @JsonIgnore
+    @Column
+    private int active;
+
+    @JsonIgnore
     @Transient
     private String confirmPassword;
 
@@ -87,5 +91,13 @@ public class User extends BaseEntity{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 }
