@@ -32,6 +32,9 @@ public class Employee extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "event_id"))
     private List<Event> eventList;
 
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Salary> salary;
+
     @ManyToOne
     @JoinColumn(name = "STATUS_ID")
     private Status status;
