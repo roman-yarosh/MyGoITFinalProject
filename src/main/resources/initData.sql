@@ -13,9 +13,9 @@ INSERT INTO users (id, username, password, enabled) VALUES (3, 'nastya', '$2a$10
 INSERT INTO users (id, username, password, enabled) VALUES (4, 'user', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa', 1);
 INSERT INTO users (id, username, password, enabled) VALUES (5, 'moderator', '$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa', 1);
 
-INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
-INSERT INTO roles (id, name) VALUES (2, 'ROLE_MODERATOR');
-INSERT INTO roles (id, name) VALUES (3, 'ROLE_ADMIN');
+INSERT INTO roles (id, name) VALUES (1, 'USER');
+INSERT INTO roles (id, name) VALUES (2, 'MODERATOR');
+INSERT INTO roles (id, name) VALUES (3, 'ADMIN');
 
 INSERT INTO user_roles (user_id, role_id) VALUES (1, 3);
 INSERT INTO user_roles (user_id, role_id) VALUES (2, 3);
