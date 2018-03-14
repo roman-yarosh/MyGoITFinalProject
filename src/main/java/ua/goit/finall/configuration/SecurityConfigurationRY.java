@@ -1,3 +1,4 @@
+/*
 package ua.goit.finall.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class SecurityConfigurationRY extends WebSecurityConfigurerAdapter{
 
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
+*/
 /* work but simple
         http
                 .authorizeRequests()
@@ -52,7 +54,8 @@ public class SecurityConfigurationRY extends WebSecurityConfigurerAdapter{
                 .formLogin()
                 .and()
                 .httpBasic();
-*/
+*//*
+
         http
                 .csrf().disable()
                 .authorizeRequests()
@@ -84,6 +87,7 @@ public class SecurityConfigurationRY extends WebSecurityConfigurerAdapter{
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
     }
 }
+*/
 
 /*
 @Configuration
