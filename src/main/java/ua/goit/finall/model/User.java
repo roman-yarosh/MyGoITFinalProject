@@ -21,6 +21,9 @@ public class User extends BaseEntity{
     @Transient
     private String confirmPassword;
 
+    @Column(name = "ENABLED", columnDefinition = "tinyint default true")
+    private Boolean enabled;
+
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -34,6 +37,7 @@ public class User extends BaseEntity{
         final StringBuilder sb = new StringBuilder("User{");
         sb.append("id=").append(super.getId());
         sb.append(", username='").append(username).append('\'').append('\n');
+        sb.append(", enabled=").append(enabled);
         sb.append(", roles=").append(roles);
         sb.append('}');
         return sb.toString();
@@ -69,5 +73,13 @@ public class User extends BaseEntity{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }

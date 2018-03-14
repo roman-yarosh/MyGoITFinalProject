@@ -294,6 +294,7 @@ CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `password` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
+  `enabled` TINYINT(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
