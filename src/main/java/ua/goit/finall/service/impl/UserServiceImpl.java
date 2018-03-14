@@ -1,7 +1,7 @@
 package ua.goit.finall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.goit.finall.dao.RoleRepository;
 import ua.goit.finall.dao.UserRepository;
@@ -14,13 +14,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private PasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public User getById(Long id) {
@@ -50,6 +50,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserByUsername(String username) {
-        return userRepository.findUserByUsername(username);
+        return userRepository.findByUsername(username);
     }
 }
