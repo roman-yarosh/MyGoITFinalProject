@@ -11,7 +11,7 @@ import ua.goit.finall.service.ScheduleService;
 import java.util.Properties;
 
 @Configuration
-public class ScheduleConfig {
+public class ScheduleConfiguration {
 
     @Bean
     public JavaMailSender getJavaMailSender() {
