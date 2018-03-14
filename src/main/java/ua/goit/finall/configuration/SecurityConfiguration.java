@@ -48,16 +48,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll()
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/", "/login", "/logout").permitAll()
                 .antMatchers( "/","/admin**").hasAnyRole("USER","ADMIN")
-                .and().formLogin()
-                .loginProcessingUrl("/j_spring_security_check") // Submit URL;
+                .antMatchers( "/employeeInfo").hasAnyRole("USER","ADMIN")
+                //        .antMatchers( "/admin**").hasAnyRole("USER","ADMIN").anyRequest().authenticated()
+
+                .antMatchers( "/api/employees**").hasRole("ADMIN")
+                .antMatchers( "/api/departments**").hasRole("ADMIN")
+                .antMatchers( "/api/events**").hasRole("ADMIN")
+                .antMatchers( "/api/eventTypes**").hasRole("ADMIN")
+                .antMatchers( "/api/positions**").hasRole("ADMIN")
+                .antMatchers( "/api/salaries**").hasRole("ADMIN")
+                .antMatchers( "/api/statuses**").hasRole("ADMIN")
+                .antMatchers( "/api/users**").hasRole("ADMIN")
+                .antMatchers( "/api/roles**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+
+                // Config for Login Form
+                .and().formLogin()//
+                // Submit URL of login page.
+                .loginProcessingUrl("/j_spring_security_check") // Submit URL
+                //.loginPage("/login")//when custom login form will be ready
                 .defaultSuccessUrl("/welcome")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 // Config for Logout Page
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
     }
 
     @Override
