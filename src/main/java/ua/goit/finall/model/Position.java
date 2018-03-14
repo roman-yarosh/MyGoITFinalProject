@@ -16,20 +16,15 @@ public class Position extends BaseEntity{
     @Column(name = "HOUR_SALARY")
     private BigDecimal hourSalary;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "position", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Employee> employeeList;
-
     public Position() {
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Position{");
-        sb.append("id='").append(super.getId()).append('\'');
-        sb.append("name='").append(name).append('\'');
+        sb.append("id=").append(super.getId());
+        sb.append(", name='").append(name).append('\'');
         sb.append(", hourSalary=").append(hourSalary);
-        sb.append(", employeeList=").append(employeeList);
         sb.append('}');
         return sb.toString();
     }
@@ -48,13 +43,5 @@ public class Position extends BaseEntity{
 
     public void setHourSalary(BigDecimal hourSalary) {
         this.hourSalary = hourSalary;
-    }
-
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
     }
 }

@@ -27,7 +27,6 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "POSITION_ID")
     private Position position;
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "employee_events", joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id"))
@@ -36,9 +35,6 @@ public class Employee extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "STATUS_ID")
     private Status status;
-
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Salary> salary;
 
     @Column(name = "REGISTERED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -57,8 +53,8 @@ public class Employee extends BaseEntity {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Employee{");
-        sb.append("id='").append(super.getId()).append('\'');
-        sb.append("name='").append(name).append('\'');
+        sb.append("id=").append(super.getId());
+        sb.append(", name='").append(name).append('\'');
         sb.append(", surname='").append(surname).append('\'');
         sb.append(", middleName='").append(middleName).append('\'');
         sb.append(", department=").append(department.getName());
@@ -127,14 +123,6 @@ public class Employee extends BaseEntity {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public List<Salary> getSalary() {
-        return salary;
-    }
-
-    public void setSalary(List<Salary> salary) {
-        this.salary = salary;
     }
 
     public Date getRegistredDate() {

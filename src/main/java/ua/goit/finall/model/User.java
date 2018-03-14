@@ -25,17 +25,10 @@ public class User extends BaseEntity{
     @Transient
     private String confirmPassword;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "user")
-    private Employee employee;
-
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-
-    @OneToMany(mappedBy = "createdByUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Event> eventList;
 
     public User() {
     }
@@ -43,11 +36,8 @@ public class User extends BaseEntity{
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");
-        sb.append("id='").append(super.getId()).append('\'');
-        sb.append("username='").append(username).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append(", confirmPassword='").append(confirmPassword).append('\'');
-        sb.append(", employee=").append(employee);
+        sb.append("id=").append(super.getId());
+        sb.append(", username='").append(username).append('\'').append('\n');
         sb.append(", roles=").append(roles);
         sb.append('}');
         return sb.toString();
@@ -75,14 +65,6 @@ public class User extends BaseEntity{
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 
     public Set<Role> getRoles() {

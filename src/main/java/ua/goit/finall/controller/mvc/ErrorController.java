@@ -1,4 +1,4 @@
-package ua.goit.finall.controller;
+package ua.goit.finall.controller.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;

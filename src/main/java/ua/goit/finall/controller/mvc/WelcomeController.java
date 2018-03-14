@@ -1,4 +1,4 @@
-package ua.goit.finall.controller;
+package ua.goit.finall.controller.mvc;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,17 +11,12 @@ import java.util.Map;
 @Controller
 public class WelcomeController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
 	public String showWelcomePage(Map<String, Object> model) {
 		model.put("name", getLoggedinUserName());
 		return "index";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Map<String, Object> model) {
-		model.put("name", getLoggedinUserName());
-		return "index";
-	}
 	private String getLoggedinUserName() {
 		Object principal = SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();

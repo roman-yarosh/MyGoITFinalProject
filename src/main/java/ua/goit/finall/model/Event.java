@@ -14,10 +14,6 @@ public class Event extends BaseEntity{
     @JoinColumn(name = "TYPE_ID")
     private EventType type;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "eventList")
-    private List<Employee> employeeList;
-
     @ManyToOne
     @JoinColumn(name = "CREATED_USER_ID")
     private User createdByUser;
@@ -36,8 +32,7 @@ public class Event extends BaseEntity{
     public String toString() {
         final StringBuilder sb = new StringBuilder("Event{");
         sb.append("id=").append(super.getId());
-        sb.append("type=").append(type);
-        sb.append(", employeeList=").append(employeeList);
+        sb.append(", type=").append(type);
         sb.append(", createdByUser=").append(createdByUser);
         sb.append(", eventDate=").append(eventDate);
         sb.append(", hours=").append(hours);
@@ -51,14 +46,6 @@ public class Event extends BaseEntity{
 
     public void setType(EventType type) {
         this.type = type;
-    }
-
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
     }
 
     public User getCreatedByUser() {

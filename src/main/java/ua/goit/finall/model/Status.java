@@ -12,19 +12,14 @@ public class Status extends BaseEntity{
     @Column(name = "TYPE")
     private String type;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "status", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Employee> employeeList;
-
     public Status() {
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Status{");
-        sb.append("id='").append(super.getId()).append('\'');
-        sb.append("type='").append(type).append('\'');
-        sb.append(", employeeList=").append(employeeList);
+        sb.append("id=").append(super.getId());
+        sb.append(", type='").append(type).append('\'');
         sb.append('}');
         return sb.toString();
     }
@@ -37,11 +32,4 @@ public class Status extends BaseEntity{
         this.type = type;
     }
 
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
-    }
 }

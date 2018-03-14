@@ -4,13 +4,6 @@ import ua.goit.finall.model.Salary;
 
 import java.util.List;
 
-public interface SalaryService {
+public interface SalaryService extends BaseService<Salary> {
 
-    Salary getById(Long id);
-
-    void save(Salary salary);
-
-    void delete(Long id);
-
-    List<Salary> getAll();
 }

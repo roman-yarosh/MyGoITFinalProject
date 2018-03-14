@@ -1,14 +1,15 @@
-package ua.goit.finall.service;
+package ua.goit.finall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.goit.finall.dao.StatusRepository;
 import ua.goit.finall.model.Status;
+import ua.goit.finall.service.StatusService;
 
 import java.util.List;
 
 @Service
-public class StatusServiceImpl implements StatusService{
+public class StatusServiceImpl implements StatusService {
 
     @Autowired
     StatusRepository statusRepository;
@@ -26,6 +27,11 @@ public class StatusServiceImpl implements StatusService{
     @Override
     public void delete(Long id) {
         statusRepository.delete(id);
+    }
+
+    @Override
+    public Status update(Status entity) {
+        return null;
     }
 
     @Override
