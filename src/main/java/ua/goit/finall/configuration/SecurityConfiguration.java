@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -36,8 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth)
-            throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.
                 jdbcAuthentication()
                 .usersByUsernameQuery(usersQuery)
@@ -52,32 +52,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/login", "/logout").permitAll()
-                .antMatchers( "/","/admin**").hasAnyRole("USER","ADMIN")
-                .antMatchers( "/employeeInfo").hasAnyRole("USER","ADMIN")
-                //        .antMatchers( "/admin**").hasAnyRole("USER","ADMIN").anyRequest().authenticated()
-
-                .antMatchers( "/api/employees**").hasRole("ADMIN")
-                .antMatchers( "/api/departments**").hasRole("ADMIN")
-                .antMatchers( "/api/events**").hasRole("ADMIN")
-                .antMatchers( "/api/eventTypes**").hasRole("ADMIN")
-                .antMatchers( "/api/positions**").hasRole("ADMIN")
-                .antMatchers( "/api/salaries**").hasRole("ADMIN")
-                .antMatchers( "/api/statuses**").hasRole("ADMIN")
-                .antMatchers( "/api/users**").hasRole("ADMIN")
-                .antMatchers( "/api/roles**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .antMatchers( "/admin**").hasAnyRole("USER","ADMIN").anyRequest().authenticated()
+                .antMatchers( "/employeeInfo").hasAnyRole("USER","ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/employees**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/departments**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/events**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/eventTypes**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/positions**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/salaries**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/statuses**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/users**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers( "/api/roles**").hasRole("ADMIN").anyRequest().authenticated()
 
                 // Config for Login Form
                 .and().formLogin()//
                 // Submit URL of login page.
                 .loginProcessingUrl("/j_spring_security_check") // Submit URL
                 //.loginPage("/login")//when custom login form will be ready
-                .defaultSuccessUrl("/welcome")//
+                .defaultSuccessUrl("/")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 // Config for Logout Page
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
+                //.and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
+                .and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/").and().exceptionHandling()
+                .accessDeniedPage("/access-denied");
     }
 
     @Override
