@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Map;
 
+import static ua.goit.finall.utils.Utils.getLoggedinUserName;
+
 @Controller
 public class WelcomeController {
 
@@ -16,16 +18,4 @@ public class WelcomeController {
 		model.put("name", getLoggedinUserName());
 		return "index";
 	}
-
-	private String getLoggedinUserName() {
-		Object principal = SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		
-		if (principal instanceof UserDetails) {
-			return ((UserDetails) principal).getUsername();
-		}
-		
-		return principal.toString();
-	}
-
 }

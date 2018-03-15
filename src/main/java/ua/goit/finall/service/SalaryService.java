@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface SalaryService extends BaseService<Salary> {
 
+    List<Salary> getPersonalSalaries(Long employeeId, Integer fromYear, Integer fromMonth, Integer toYear, Integer toMonth);
+
 }

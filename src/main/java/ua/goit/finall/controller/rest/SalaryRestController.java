@@ -21,7 +21,7 @@ public class SalaryRestController {
     SalaryService salaryService;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Salary>> getAllSalarys() {
+    public ResponseEntity<List<Salary>> getAllSalaries() {
         List<Salary> salaryList = this.salaryService.getAll();
 
         if (salaryList.isEmpty()) {

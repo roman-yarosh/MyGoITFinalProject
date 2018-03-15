@@ -6,6 +6,7 @@ import ua.goit.finall.dao.SalaryRepository;
 import ua.goit.finall.model.Salary;
 import ua.goit.finall.service.SalaryService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,5 +38,10 @@ public class SalaryServiceImpl implements SalaryService {
     @Override
     public List<Salary> getAll() {
         return salaryRepository.findAll();
+    }
+
+    @Override
+    public List<Salary> getPersonalSalaries(Long employeeId, Integer fromYear, Integer fromMonth, Integer toYear, Integer toMonth) {
+        return salaryRepository.getPersonalSalaries(employeeId, fromYear, fromMonth, toYear, toMonth);
     }
 }

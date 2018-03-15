@@ -54,11 +54,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void calculateSalary(Integer month, Integer year) {
 
-        //Настя надо подправить расчет, чтобы рассчитывалась зарплата только за дни месяца, ане всего рабочего периода
+        //Настя надо подправить расчет, чтобы рассчитывалась зарплата только за дни месяца, а не всего рабочего периода
 
         for (Employee employee : employeeRepository.findAllWithDeps()) {
             double salarySum = 0;
             double hourSalary = employee.getPosition().getHourSalary().doubleValue();
+            //Тут ты пробегаеш  по всем событиям с начала трудоустройства и получается больше, чем за месяц, нужно только за укзанный в параметрах метода год и месяц
             for (Event event : employee.getEventList()) {
                 salarySum += event.getType().getRate() * hourSalary;
             }
