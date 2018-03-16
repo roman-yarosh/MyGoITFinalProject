@@ -5,8 +5,12 @@
     <p><a href="/employeeInfo">employeeInfo</a></p>
     <p><a href="/login">login</a></p>
     <p><a href="/logout">logout</a></p>
-    <p>Database security user: roman, kostya, nastya, user, moderator and password: 123</p>
+    <p>Database security user [user role]: roman [ROLE_ADMIN], kostya [ROLE_ADMIN], nastya [ROLE_ADMIN],
+                         user [ROLE_USER], moderator [ROLE_MODERATOR]
+                         and password: 123</p>
     <p>API:</p>
+    <p><a href="http://localhost:8080/api/personalSalaries/${name}/2018/1/2018/3">http://localhost:8080/api/personalSalaries/${name}/2018/1/2018/3</a></p>
+<br>
     <p><a href="http://localhost:8080/api/employees/">http://localhost:8080/api/employees/</a></p>
     <p><a href="http://localhost:8080/api/employees/1">http://localhost:8080/api/employees/1</a></p>
     <p><a href="http://localhost:8080/api/employees/2">http://localhost:8080/api/employees/2</a></p>
