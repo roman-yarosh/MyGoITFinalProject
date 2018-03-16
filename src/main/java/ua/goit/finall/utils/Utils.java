@@ -16,4 +16,15 @@ public class Utils {
         return principal.toString();
     }
 
+    public static UserDetails getLoggedinPrincipal() {
+        Object principal = SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return (UserDetails) principal;
+        }
+        return (UserDetails) principal;
+    }
+
+
 }

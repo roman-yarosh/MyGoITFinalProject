@@ -18,4 +18,9 @@ public class WelcomeController {
 		model.put("name", getLoggedinUserName());
 		return "index";
 	}
+
+	@RequestMapping(value = {"/error403"}, method = RequestMethod.GET)
+	public String showError403Page() {
+		return "error403";
+	}
 }

@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
@@ -51,43 +52,52 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+
                 .antMatchers("/", "/login", "/logout").permitAll()
-                .antMatchers( "/admin/**").hasRole("ADMIN").anyRequest().authenticated()
-                .antMatchers( "/employeeInfo").hasAnyRole("USER","MODERATOR","ADMIN").anyRequest().authenticated()
-                .antMatchers( "/api/employees/**").hasAnyRole("MODERATOR","ADMIN").anyRequest().authenticated()
-                .antMatchers( "/api/departments/**").hasAnyRole("MODERATOR","ADMIN").anyRequest().authenticated()
-                .antMatchers( "/api/events/**").hasAnyRole("MODERATOR","ADMIN").anyRequest().authenticated()
-                .antMatchers( "/api/eventTypes/**").hasAnyRole("MODERATOR","ADMIN").anyRequest().authenticated()
-                .antMatchers( "/api/positions/**").hasAnyRole("MODERATOR","ADMIN").anyRequest().authenticated()
-                .antMatchers( "/api/salaries/**").hasAnyRole("MODERATOR","ADMIN").anyRequest().authenticated()
-                .antMatchers( "/api/personalSalaries/**").hasAnyRole("USER","MODERATOR","ADMIN").anyRequest().authenticated()
-                .antMatchers( "/api/statuses/**").hasAnyRole("MODERATOR","ADMIN").anyRequest().authenticated()
-                .antMatchers( "/api/users/**").hasAnyRole("MODERATOR","ADMIN").anyRequest().authenticated()
-                .antMatchers( "/api/roles/**").hasAnyRole("MODERATOR","ADMIN").anyRequest().authenticated()
+                .antMatchers( "/employeeInfo/**").hasAnyRole("USER","MODERATOR","ADMIN")
+                .antMatchers( "/api/personalSalaries/**").hasAnyRole("USER","MODERATOR","ADMIN")
+                .antMatchers( "/api/employees/**").hasAnyRole("MODERATOR","ADMIN")
+                .antMatchers( "/api/departments/**").hasAnyRole("MODERATOR","ADMIN")
+                .antMatchers( "/api/events/**").hasAnyRole("MODERATOR","ADMIN")
+                .antMatchers( "/api/eventTypes/**").hasAnyRole("MODERATOR","ADMIN")
+                .antMatchers( "/api/positions/**").hasAnyRole("MODERATOR","ADMIN")
+                .antMatchers( "/api/salaries/**").hasAnyRole("MODERATOR","ADMIN")
+                .antMatchers( "/api/statuses/**").hasAnyRole("MODERATOR","ADMIN")
+                .antMatchers( "/api/users/**").hasAnyRole("MODERATOR","ADMIN")
+                .antMatchers( "/api/roles/**").hasAnyRole("MODERATOR","ADMIN")
+                .antMatchers( "/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
 
                 // Config for Login Form
-                .and().formLogin()//
+                .and()
+                .formLogin()//
                 // Submit URL of login page.
-                .loginProcessingUrl("/j_spring_security_check") // Submit URL
+                //.loginProcessingUrl("/j_spring_security_check") // Submit URL
                 //.loginPage("/login")//when custom login form will be ready
+                .permitAll()
                 .defaultSuccessUrl("/")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 // Config for Logout Page
                 //.and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
-                .and().logout()
+                .and()
+                .logout()
+                .permitAll()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and().exceptionHandling()
-                .accessDeniedPage("/access-denied");
+                .logoutSuccessUrl("/")
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/error403");
+
     }
 
-    @Override
+/*    @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-    }
+                .antMatchers("/resources*//**", "/static*//**", "/css*//**", "/js*//**", "/images*//**");
+    }*/
 }
 
 /*

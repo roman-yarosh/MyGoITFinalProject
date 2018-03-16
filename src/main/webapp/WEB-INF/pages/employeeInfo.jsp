@@ -12,6 +12,7 @@
     <title>Employee info</title>
 </head>
 <body>
-    ${emp}
+    ${employee}
+    ${principal}
 </body>
 </html>
