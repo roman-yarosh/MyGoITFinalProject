@@ -32,11 +32,11 @@ public class PersonalSalaryRestController {
     @Autowired
     UserService userService;
 
-    @PreAuthorize("#employee.user.id == principal.id")
-    @RequestMapping(path = "/{fromYear}/{fromMonth}/{toYear}/{toMonth}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Salary>> getPersonalSalaries(@PathVariable("fromYear") Integer fromYear, @PathVariable("fromMonth") Integer fromMonth,
+    @PreAuthorize("#username == principal.username")
+    @RequestMapping(path = "/{username}/{fromYear}/{fromMonth}/{toYear}/{toMonth}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<List<Salary>> getPersonalSalaries(@PathVariable("username") String username, @PathVariable("fromYear") Integer fromYear, @PathVariable("fromMonth") Integer fromMonth,
                                                             @PathVariable("toYear") Integer toYear, @PathVariable("toMonth") Integer toMonth) {
-        String username = getLoggedinUserName();
+        //String username = getLoggedinUserName();
         User user = userService.findUserByUsername(username);
         Long employeeId = employeeService.findEmployeeByUser(user).getId();
         List<Salary> salaryList = this.salaryService.getPersonalSalaries(employeeId, fromYear, fromMonth, toYear, toMonth);
