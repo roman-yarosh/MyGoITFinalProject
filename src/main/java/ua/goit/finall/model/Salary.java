@@ -25,6 +25,13 @@ public class Salary extends BaseEntity {
     public Salary() {
     }
 
+    public Salary(Employee employee, Integer month, Integer year, BigDecimal salarySum) {
+        this.employee = employee;
+        this.month = month;
+        this.year = year;
+        this.salarySum = salarySum;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Salary{");

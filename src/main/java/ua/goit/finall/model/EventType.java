@@ -6,6 +6,22 @@ import java.util.List;
 @Entity
 @Table(name = "event_types")
 public class EventType extends BaseEntity {
+    public enum Types {
+        WORK("Working day"), TRAINING("Technical training");
+        String name;
+
+        Types(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
 
     @Column(name = "TYPE")
     private String type;
@@ -41,4 +57,6 @@ public class EventType extends BaseEntity {
     public void setRate(Double rate) {
         this.rate = rate;
     }
+
+
 }

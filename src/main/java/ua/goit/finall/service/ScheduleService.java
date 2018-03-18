@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.time.LocalDate;
 
 @Component
 public class ScheduleService {
@@ -19,23 +20,15 @@ public class ScheduleService {
 
     @Autowired
     private EmployeeService employeeService;
-    private int count;
 
     //Scheduled : second, minute, hour, day of month, month, day(s) of week
     //@Scheduled(cron = "30 15 1 * * ")
-    @Scheduled(cron = "0 0 10 1 * *") // At 10 o'clock at 1 day of a month.
-    //@Scheduled(fixedRate = 10000)
+//    @Scheduled(cron = "0 0 10 1 * *") // At 10 o'clock at 1 day of a month.
+    @Scheduled(fixedRate = 1000)
     public void passLetter() {
-        System.out.println("Email send");
-        count++;
-        System.out.println("Count" + count);
-
-        //Настя нужно передать месяц и год в расчет зарплаты и подправить алгоритм рассчета
-        // Внесу свои 5 копеек. У нас почисовая ставка, нужно отталкиваться отработаного времени. 
-
-        //!!!!!!employeeService.calculateSalary(1, 1);
+        employeeService.calculateSalary(LocalDate.now().getMonthValue(), LocalDate.now().getYear());
         //sendMessageWithAttachment();
-
+        System.out.println("Email send");
     }
 
     public void sendMessageWithAttachment(String to, String subject, String text,

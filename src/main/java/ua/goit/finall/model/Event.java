@@ -28,6 +28,13 @@ public class Event extends BaseEntity{
     public Event() {
     }
 
+    public Event(EventType type, User createdByUser, Date eventDate, Integer hours) {
+        this.type = type;
+        this.createdByUser = createdByUser;
+        this.eventDate = eventDate;
+        this.hours = hours;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Event{");

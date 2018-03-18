@@ -15,7 +15,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     Employee findEmployeeByUser(User user);
 
-//    @Query("select e from Employee e join fetch e.events es join fetch e.salary")
-    @Query("select e from Employee e")
+    @Query("select e from Employee e join fetch e.eventList ev")
+//    @Query("select e from Employee e")
     List<Employee> findAllWithDeps();
 }

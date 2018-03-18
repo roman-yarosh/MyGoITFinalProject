@@ -32,7 +32,7 @@ public class Employee extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "event_id"))
     private List<Event> eventList;
 
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Salary> salary;
 
     @ManyToOne
@@ -150,5 +150,13 @@ public class Employee extends BaseEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Salary> getSalary() {
+        return salary;
+    }
+
+    public void setSalary(List<Salary> salary) {
+        this.salary = salary;
     }
 }
