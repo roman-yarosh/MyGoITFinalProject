@@ -1,11 +1,21 @@
 package ua.goit.finall.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import ua.goit.finall.dao.EmployeeRepository;
 import ua.goit.finall.model.*;
 import ua.goit.finall.service.EmployeeService;
+import ua.goit.finall.service.PdfService;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -15,9 +25,16 @@ import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-
+    private Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class.getName());
+    private final String TO_ADDRESS = "degtjarova@gmail.com";
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private PdfService pdfService;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Override
     public Employee getById(Long id) {
@@ -70,7 +87,37 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
 
             employeeRepository.save(employee);
+
+            try {
+                File file = new File("report.pdf");
+                FileOutputStream reportStream = new FileOutputStream(file);
+                pdfService.createEmployeeReport(employee, reportStream);
+
+                sendMessageWithAttachment(TO_ADDRESS, "report", "report", file.getAbsolutePath());
+            } catch (Exception e) {
+                logger.error("Report creation error", e);
+                e.printStackTrace();
+            }
+
         }
+    }
+
+    private void sendMessageWithAttachment(String to, String subject, String text,
+                                           String pathToAttachment) throws MessagingException {
+
+        MimeMessage message = mailSender.createMimeMessage();
+
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText(text);
+
+        FileSystemResource file
+                = new FileSystemResource(new File(pathToAttachment));
+        helper.addAttachment("Invoice", file);
+
+        mailSender.send(message);
     }
 
     private double getSalaryInRange(Integer month, Integer year, Employee employee) {
