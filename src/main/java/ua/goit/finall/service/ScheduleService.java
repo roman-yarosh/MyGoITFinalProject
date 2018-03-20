@@ -15,7 +15,8 @@ public class ScheduleService {
     @Autowired
     private EmployeeService employeeService;
 
-    @Scheduled(cron = "30 15 1 * * ")
+    @Scheduled(cron = "0 0 10 1 * *") // At 10 o'clock at 1 day of a month.
+    //    @Scheduled(cron = "30 15 1 * * *")
 //    @Scheduled(fixedRate = 1000)
     public void passLetter() {
         employeeService.calculateSalary(LocalDate.now().getMonthValue(), LocalDate.now().getYear());
