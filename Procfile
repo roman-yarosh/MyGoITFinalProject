@@ -1,1 +1,1 @@
-web: java -jar GoITFinalProject.jar
+web: java -jar target/GoITFinalProject-1.0-SNAPSHOT.jar
