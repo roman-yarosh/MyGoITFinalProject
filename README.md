@@ -19,6 +19,15 @@ Some text about us.
 
 [My github home url](https://github.com/0k6r)
 
+Roman Yarosh: Проект выложил на Heroku:
+https://goit-j8-group10-final.herokuapp.com/
+
+Репозиторий выложенного на Heroku проекта, так как MySQL работает только при добавлении кредитной карты, 
+пришлось переделать на PostgreSQL (размещено позже, так как один участник группы - Костя,
+должен был сделать тесты и разместить на Хероку наш проект, но с прошлой субботы не выходит на связь,
+поэтому пришлось самому выкладывать проект на Heroku).
+Репозиторий проекта на PostgreSQL: https://github.com/roman-yarosh/goit-j8-group10-final
+
 ## Technical task
 
 ### Необходимо разработать REST сервер, который имеет следующий функционал:
