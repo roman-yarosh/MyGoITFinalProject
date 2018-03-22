@@ -17,7 +17,7 @@ Some text about us.
 
 ## Demo
 
-[My github home url](https://github.com/0k6r)
+[Our project github url](https://github.com/0k6r/GoITFinalProject)
 
 Roman Yarosh: Проект выложил на Heroku:
 https://goit-j8-group10-final.herokuapp.com/
